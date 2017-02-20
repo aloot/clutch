@@ -9,7 +9,7 @@ public class Test {
     System.out.println("Git sucks");
 
 
-    Anna igen och igen
+    //Anna igen och igen
 
     System.out.println("Anna igen");
     System.out.println("Se till att skriva i 'println' hörru! :)");
