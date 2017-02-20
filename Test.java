@@ -6,6 +6,8 @@ public class Test {
 
     System.out.println("Java Anna was here Java");
     System.out.println("Git sucks");
+
+    System.out.println("Git sucks, or does it.......?");
     System.out.println("And so was Samuel!");
 
   }
