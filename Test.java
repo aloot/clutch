@@ -15,5 +15,7 @@ public class Test {
 
     System.out.println("And so was Samuel!");
 
+    System.out.println("Ändrar lite för att blidka Anna´s merge-projekt");
+
   }
 }
