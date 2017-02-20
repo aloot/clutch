@@ -7,7 +7,7 @@ public class Test {
     System.out.println("Java Anna was here Java");
     System.out.println("Git sucks");
 
-    Anna igen
+    Anna igen och igen
 
 
     System.out.println("Git sucks, or does it.......?");
