@@ -110,9 +110,13 @@ public class Menu {
       movieListByName = db.getAllMoviesByTitle();
     //  System.out.println("All movies listed so far: \n" + movieListByName);
       System.out.println("All movies listed so far:");
+      System.out.println("ID  Movie");
       int counter = 1;
       for (Movie m : movieListFullData) {
-        System.out.println(counter + " " + m.title());
+
+        System.out.println(m.id_movie() + "   " + m.title());
+
+      //  System.out.println(counter + " " + m.title());
         counter = counter + 1;
       }
       break;
