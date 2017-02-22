@@ -31,7 +31,7 @@ public class MovieSQL implements FaceMovieDB{
 
   public List<Movie> getAllMoviesFullData(){
     ArrayList<Movie> movieList = new ArrayList<Movie>();
-    ResultSet rs = db.executeQuery("SELECT * FROM movie");
+    ResultSet rs = db.executeQuery("SELECT * FROM movie order by lower(title)  asc");
     try{
       Movie m = null;
       while(rs.next()){
