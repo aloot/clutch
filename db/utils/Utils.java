@@ -26,7 +26,7 @@ Gör om textsträng till siffror
     try {
       int i = Integer.parseInt(s);
     } catch (NumberFormatException e) {
-      System.out.println("The string" + s + " was not a number");
+      System.out.println("The string: " + s + " was not a number");
     }
     return s;
   }
