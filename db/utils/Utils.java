@@ -1,12 +1,15 @@
 package db.utils;
 
 public class Utils {
-
+  /*public static void main(String [] args) {
+    String s = args[0];
+    charToDigit(s);
+  */
 
     /*
     Removes blanks at end & beginning
     */
-  public String removeBlanks(String s){
+  public static String removeBlanks(String s){
     if (s.length() > 2) {
       s = s.trim();
       return s;
@@ -19,13 +22,13 @@ public class Utils {
 /*
 Gör om textsträng till siffror
 */
-  public int charToDig(String s) {
+  public static void charToDigit(String s) {
     try {
       int i = Integer.parseInt(s);
     } catch (NumberFormatException e) {
-      System.out.println("The string(" + s ") was not a number");
+      System.out.println("The string" + s + " was not a number");
     }
-      return s
+    System.out.println(s);
   }
 
 //  if (s.startsWith(" "))
