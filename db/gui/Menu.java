@@ -4,8 +4,8 @@ import db.app.Movie;
 import db.app.MovieSQL;
 import db.app.FaceMovieDB;
 
-/*import db.gui.AddCharacter;
-import db.gui.Review;*/
+import db.gui.AddCharacter;
+import db.gui.AddReview;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -102,7 +102,8 @@ public class Menu {
 //----------------------------------------------//
   public void performSelection(int menuChoice) {
     AddMovie addmovie = new AddMovie();
-//    Review review = new Review();
+    AddReview review = new AddReview();
+
     List<Movie> movieListFullData = db.getAllMoviesFullData();
     List<String> movieListByName = new ArrayList<String>();
     switch(menuChoice) {
@@ -111,12 +112,15 @@ public class Menu {
       movieListByName = db.getAllMoviesByTitle();
     //  System.out.println("All movies listed so far: \n" + movieListByName);
       System.out.println("\nAll movies listed so far:");
+
       System.out.println("ID  Movie\n-----------------");
       int counter = 1;
       for (Movie m : movieListFullData) {
         System.out.println(m.id_movie() + "   " + m.title());
+        System.out.println("\nID  Movie");
         counter = counter + 1;
       }
+      System.out.println("------------End of List-----------------");
       break;
 
       case 2: // add movie
