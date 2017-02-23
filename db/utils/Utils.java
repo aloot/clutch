@@ -7,7 +7,7 @@ public class Utils {
   */
 
     /*
-    Removes blanks at end & beginning
+    Removes blanks at end & beginning. Use with i.e movie title, name etc
     */
   public static String removeBlanks(String s){
     if (s.length() > 2) {
@@ -22,13 +22,13 @@ public class Utils {
 /*
 Gör om textsträng till siffror
 */
-  public static void charToDigit(String s) {
+  public static int charToDigit(String s) {
     try {
       int i = Integer.parseInt(s);
     } catch (NumberFormatException e) {
       System.out.println("The string" + s + " was not a number");
     }
-    System.out.println(s);
+    return s;
   }
 
 //  if (s.startsWith(" "))
