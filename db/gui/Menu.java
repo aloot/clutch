@@ -4,8 +4,8 @@ import db.app.Movie;
 import db.app.MovieSQL;
 import db.app.FaceMovieDB;
 
-import db.gui.AddCharacter;
-import db.gui.Review;
+/*import db.gui.AddCharacter;
+import db.gui.Review;*/
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Menu {
   FaceMovieDB db = new MovieSQL();
   private AddCharacter addChar = new AddCharacter();
 
-//----------------------------------------------------------------------------//
+//-----------------------------//
   public void runMenu() {
       while(!exit) {
         printMenu();
@@ -27,7 +27,7 @@ public class Menu {
         performSelection(menuChoice);
       }
   }
-//----------------------------------------------------------------------------//
+//-----------------------------//
   public void runLoginMenu() {
     printHeader();
     while(!exit) {
@@ -36,7 +36,7 @@ public class Menu {
       performLoginSelection(loginChoice);
     }
   }
-//----------------------------------------------------------------------------//
+//---------------------------//
   public void printHeader() {
     System.out.println("\n|-----------------------------------------|");
     System.out.println("|-------------                ------------|");
@@ -44,7 +44,7 @@ public class Menu {
     System.out.println("|-------------                ------------|");
     System.out.println("|-----------------------------------------|");
   }
-//----------------------------------------------------------------------------//
+//------------------------//
   public void performLoginSelection(int loginChoice) {
     switch(loginChoice) {
       case 1:
@@ -60,7 +60,7 @@ public class Menu {
       System.out.println("\nAn unknown error has occured.");
     }
   }
-//----------------------------------------------------------------------------//
+//---------------------//
   public int loginMenuInput() {
 //    Scanner sc2 = new Scanner(System.in);
     int loginChoice = -1;
@@ -73,11 +73,11 @@ public class Menu {
         }
     } return loginChoice;
   }
-//----------------------------------------------------------------------------//
+//-------------------------------------//
   public void printLoginMenu() {
     System.out.println("\n 1. Guest        2. Admin          3. Exit");
   }
-//----------------------------------------------------------------------------//
+//-------------------------------------//
   public void printMenu() {
     System.out.println("\n1. List movies");
     System.out.println("\n2. Add movies");
@@ -86,7 +86,7 @@ public class Menu {
     System.out.println("\n5. Back to login");
     System.out.println("\n6. -- exit -- ");
   }
-//----------------------------------------------------------------------------//
+//--------------------------------------//
   public int menuInput() {
   //  Scanner sc = new Scanner(System.in);
     int menuChoice = -1;
@@ -99,27 +99,26 @@ public class Menu {
         }
     } return menuChoice;
   }
-//----------------------------------------------------------------------------//
+//----------------------------------------------//
   public void performSelection(int menuChoice) {
     AddMovie addmovie = new AddMovie();
-    Review review = new Review();
+//    Review review = new Review();
     List<Movie> movieListFullData = db.getAllMoviesFullData();
     List<String> movieListByName = new ArrayList<String>();
     switch(menuChoice) {
+
       case 1: // list movies
       movieListByName = db.getAllMoviesByTitle();
     //  System.out.println("All movies listed so far: \n" + movieListByName);
-      System.out.println("All movies listed so far:");
-      System.out.println("ID  Movie");
+      System.out.println("\nAll movies listed so far:");
+      System.out.println("ID  Movie\n-----------------");
       int counter = 1;
       for (Movie m : movieListFullData) {
-
         System.out.println(m.id_movie() + "   " + m.title());
-
-      //  System.out.println(counter + " " + m.title());
         counter = counter + 1;
       }
       break;
+
       case 2: // add movie
         addMovieList = addmovie.addMovie();
 //        System.out.println(addMovieList +" : " + addMovieList.size());
@@ -139,12 +138,15 @@ public class Menu {
       }
         */
         break;
+
       case 3: // add revieew/ score
-        review.addReview();
+    //    review.addReview();
         break;
+
       case 4: // help/ about
         helpMenu();
         break;
+
       case 5: // back to login
         runLoginMenu();
         break;
@@ -156,10 +158,10 @@ public class Menu {
         System.out.println("An unknown error has occured.");
     }
   }
-//----------------------------------------------------------------------------//
+//--------------------------------//
   public void helpMenu() {
     System.out.println("\nThis is Clutch-MDb, a textbased movie database...");
     System.out.println("\nEst feugiat habitasse arcu commodo augue interdum Facilisis pharetra tortor habitasse feugiat praesent suscipit rutrum \nSodales sociosqu facilisis tempus metus Magna congue per quis vehicula Porttitor etiam tristique massa et dapibus amet \nlorem molestie Sociosqu Curae dolor amet nulla id diam donec ut auctor, imperdiet vehicula Maecenas tellus purus nam \nporta ligula fusce donec varius, tristique.");
   }
-//----------------------------------------------------------------------------//
+//--------------------------------//
 }
