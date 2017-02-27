@@ -1,9 +1,11 @@
 package db.gui;
 
 import db.app.Movie;
+import db.app.Review;
 import db.app.MovieSQL;
 import db.app.FaceMovieDB;
 
+import db.gui.AddMovie;
 import db.gui.AddCharacter;
 import db.gui.AddReview;
 
@@ -16,6 +18,8 @@ public class Menu {
   private boolean exit;
   private Scanner sc = new Scanner(System.in);
   private ArrayList<String> addMovieList = new ArrayList<String>();
+  private ArrayList<String> addReviewList = new ArrayList<String>();
+  
   FaceMovieDB db = new MovieSQL();
   private AddCharacter addChar = new AddCharacter();
 
@@ -101,8 +105,8 @@ public class Menu {
   }
 //----------------------------------------------//
   public void performSelection(int menuChoice) {
-    AddMovie addmovie = new AddMovie();
-    AddReview review = new AddReview();
+    AddMovie addMovie = new AddMovie();
+    AddReview addReview = new AddReview();
 
     List<Movie> movieListFullData = db.getAllMoviesFullData();
     List<String> movieListByName = new ArrayList<String>();
@@ -124,7 +128,7 @@ public class Menu {
       break;
 
       case 2: // add movie
-        addMovieList = addmovie.addMovie();
+        addMovieList = addMovie.addMovie();
 //        System.out.println(addMovieList +" : " + addMovieList.size());
         Movie m = new Movie(addMovieList);
         System.out.println("\n" + m);
