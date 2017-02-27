@@ -19,9 +19,11 @@ public class Menu {
   private Scanner sc = new Scanner(System.in);
   private ArrayList<String> addMovieList = new ArrayList<String>();
   private ArrayList<String> addReviewList = new ArrayList<String>();
-  
+
   FaceMovieDB db = new MovieSQL();
   private AddCharacter addChar = new AddCharacter();
+
+  FaceReviewDB db = new ReviewSQL();
 
 //-----------------------------//
   public void runMenu() {
@@ -110,6 +112,10 @@ public class Menu {
 
     List<Movie> movieListFullData = db.getAllMoviesFullData();
     List<String> movieListByName = new ArrayList<String>();
+
+    List<Review> reviewListFullData = db.getAllReviewsFullData();
+    List<String> movieListByMovieID = new ArrayList<String>();
+
     switch(menuChoice) {
 
       case 1: // list movies
@@ -148,7 +154,10 @@ public class Menu {
         break;
 
       case 3: // add revieew/ score
-    //    review.addReview();
+        addReviewList = addReview.addReview();
+        Review r = new Review(addReviewList)
+        System.out.println("\n" + r);
+        db.addReview(r);
         break;
 
       case 4: // help/ about
