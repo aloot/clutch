@@ -1,13 +1,13 @@
 package db.app;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 /**
  * A class that represents a review.
  */
-public class Review{
-  private int id_review;
-  private int id_movie;
-  private int score;
+public class Review {
+  private String id_review;
+  private String id_movie;
+  private String score;
   private String author;
   private String review;
 
@@ -31,7 +31,7 @@ public class Review{
     this.review = review;
   }
 
-  public Review(ArrayList<String> props){
+  public Review (ArrayList<String> props){
    this.id_review = 0;
    this.id_movie = props.get(0);
    this.score = props.get(1);
@@ -48,44 +48,35 @@ public class Review{
   }
 
   /**
-   * Returns the title of this movie
-   * @return The title of the movie as a String
+   * Returns the id of the movie reviewed
+   * @return The id of the movie as an int
    */
-  public String title(){
-    return this.title;
+  public int id_movie (){
+    return this.id_movie;
   }
 
   /**
-   * Returns the genre of this movie
-   * @return The genre of the movie as a String
+   * Returns the score noted for this review
+   * @return The score of the movie as an int
    */
-   public String genre(){
-     return this.genre;
+   public String score(){
+     return this.score;
    }
 
   /**
-   * Returns the recommended age limit for this movie
-   * @return The age as an int
+   * Returns author of this review
+   * @return The author as a String
    */
-   public String age(){
-     return this.age;
-   }
-
-  /**
-   * Returns the name of the production company behind the movie
-   * @return production company as a String
-   */
-   public String prod_company(){
-     return this.prod_company;
+   public String author(){
+     return this.author;
    }
 
 
 
   @Override // ta bort id_movie från utskrift
   public String toString(){
-    return id_movie + " | " + title + " | " + genre + " | " +
-      age + " | " + prod_company + " | " + prod_year + " | " +
-      synopsis + " | " + director ;
+    return id_review + " | " + id_movie + " | " + score + " | " +
+      author + " | " + review;
   }
 
   /**
