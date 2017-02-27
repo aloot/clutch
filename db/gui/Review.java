@@ -1,3 +1,6 @@
+/*
+-- Föreslår att vi döper om detta till addReview, om det är vad som händer.
+*/
 package db.gui;
 import java.util.Scanner;
 
