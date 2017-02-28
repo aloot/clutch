@@ -5,9 +5,9 @@ import java.util.ArrayList;
  * A class that represents a review.
  */
 public class Review {
-  private String id_review;
-  private String id_movie;
-  private String score;
+  private int id_review;
+  private int id_movie;
+  private int score;
   private String author;
   private String review;
 
@@ -33,10 +33,10 @@ public class Review {
 
   public Review (ArrayList<String> props){
    this.id_review = 0;
-   this.id_movie = props.get(0);
-   this.score = props.get(1);
-   this.author = props.get(2);
-   this.review = props.get(3);
+   this.id_movie = Integer.parseInt(props.get(1));
+   this.score = Integer.parseInt(props.get(2));
+   this.author = props.get(3);
+   this.review = props.get(4);
  }
 
   /**
@@ -59,7 +59,7 @@ public class Review {
    * Returns the score noted for this review
    * @return The score of the movie as an int
    */
-   public String score(){
+   public int score(){
      return this.score;
    }
 
@@ -79,18 +79,4 @@ public class Review {
       author + " | " + review;
   }
 
-  /**
-   * A mutator method to change the HTTPS capability of this Municipality
-   * @param https a boolean value representing the new indication of whether this Municipality supports HTTPS
-   */
-/*  public void setHTTPS(boolean https){
-    this.supportsHTTPS = https;
-  }*/
-  /**
-   * A mutator to set or change the ID of this Municipality. The id defaults to 0 while not set.
-   * @param id The new id as an int
-   */
-  public void setID(int id){
-    this.id_movie = id;
-  }
 }
