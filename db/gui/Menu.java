@@ -155,7 +155,7 @@ public class Menu {
 
       case 3: // add revieew/ score
         addReviewList = addReview.addReview();
-        Review r = new Review(addReviewList)
+        Review r = new Review(addReviewList);
         System.out.println("\n" + r);
         db.addReview(r);
         break;
