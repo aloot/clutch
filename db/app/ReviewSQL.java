@@ -11,8 +11,7 @@ public class ReviewSQL implements FaceReviewDB{
 
   public List<Review> getAllReviewsByMovieId(){
     ArrayList<Review> reviewList = new ArrayList<Review>();
-    //ResultSet rs = db.executeQuery("SELECT * FROM movie ORDER BY id_movie");
-    ResultSet rs = db.executeQuery("select * from review order by id_movie");
+    ResultSet rs = db.executeQuery("SELECT * FROM movie ORDER BY id_movie");
     //("select a.title as title, b.author as author, b.review as review, b.score as score from movie a, review b where a.id_movie = b.id_movie order by id_movie");
     try{
       Review r = null;
@@ -116,9 +115,10 @@ public class ReviewSQL implements FaceReviewDB{
     }
   }
 
-  public Review getByMovieID(int id_movie){
+  public List<Review> getByMovieID(int id_movie){
+    ArrayList<Review> reviewList = new ArrayList<Review>();
     System.out.println("Get by id_movie: " + id_movie);
-    String SQL="SELECT * FROM review WHERE id_movie ='" + id_movie + "'";
+    String SQL = "SELECT * FROM review WHERE id_movie ='" + id_movie + "'";
 
     System.out.println("--DEBUG: SQL: " + SQL);
     ResultSet rs = db.executeQuery(SQL);
@@ -133,7 +133,7 @@ public class ReviewSQL implements FaceReviewDB{
         r.setID(rs.getInt("id_review"));
       }
       System.out.println("En ny review: " + r.id_review() + " " + r.review());
-      return r;
+      return reviewList;
     } catch (Exception e){
       System.err.println("getByMovieID: " + e.getMessage());
     } finally {

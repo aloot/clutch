@@ -13,9 +13,7 @@ public interface FaceReviewDB{
      * @return a java.util.List of all municipalities as db.app.Municipality objects.
      *
      */
-     public List<String> getAllReviewsByMovieId(int id_movie);
-     //public Review getAllReviewsByMovieId(int id_movie);
-     //public Review getByMovieID(int id_movie);
+ public List<Review> getAllReviewsByMovieId();
   /**
    * Returns a java.util.List of all municipalities as db.app.Municipality objects.
    * @return a java.util.List of all municipalities as db.app.Municipality objects.
@@ -43,11 +41,12 @@ public interface FaceReviewDB{
    * Returns a reference to a new Municipality, which is fetched by name from the database.
    * @param title A String with the name of the municipality to fetch.
    */
-  public Review getByMovieID(int id_movie);
-
+  //public Review getByMovieID(int id_movie);
+  public List<Review> getByMovieID(int id_movie);
   /**
    * Updates a municipality's https status in the database, using its name for condition in the query
    */
+
 
   public Review getByReviewID(int id_review);
 
