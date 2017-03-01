@@ -13,7 +13,9 @@ public interface FaceReviewDB{
      * @return a java.util.List of all municipalities as db.app.Municipality objects.
      *
      */
-    public List<String> getAllReviewsByMovieId();
+     public List<String> getAllReviewsByMovieId(int id_movie);
+     //public Review getAllReviewsByMovieId(int id_movie);
+     //public Review getByMovieID(int id_movie);
   /**
    * Returns a java.util.List of all municipalities as db.app.Municipality objects.
    * @return a java.util.List of all municipalities as db.app.Municipality objects.
@@ -35,7 +37,7 @@ public interface FaceReviewDB{
    * Adds a Municipality to the database and sets its ID to the newly created records ID
    * @param m The Municipality to be updated
    */
-  public void addMovie(Movie r);
+  public void addReview(Review r);
 
   /**
    * Returns a reference to a new Municipality, which is fetched by name from the database.
