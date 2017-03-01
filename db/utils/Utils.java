@@ -23,12 +23,14 @@ public class Utils {
 Gör om textsträng till siffror
 */
   public static int charToDigit(String s) {
+    int i;
     try {
-      int i = Integer.parseInt(s);
+      i = Integer.parseInt(s);
+      return i;
     } catch (NumberFormatException e) {
       System.out.println("The string: " + s + " was not a number");
     }
-    return s;
+    return -1;
   }
 
 //  if (s.startsWith(" "))
