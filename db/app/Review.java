@@ -71,6 +71,17 @@ public class Review {
      return this.author;
    }
 
+   /**
+    * Returns reviewtext of this review
+    * @return The review as a String
+    */
+    public String review(){
+      return this.review;
+    }
+
+   public void setID(int id){
+     this.id_review = id;
+   }
 
 
   @Override // ta bort id_movie från utskrift
