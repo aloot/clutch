@@ -132,15 +132,22 @@ public class Menu {
   private void showMovie(List<Movie> mList) {
     AddReview addReview = new AddReview();
     ArrayList<String> newReview;
+    List<Review> revList;
     int nr = -1;
     boolean b = true;
     while (b) {
       try {
         System.out.print("\nEnter a movie number: ");
         nr = Integer.parseInt(sc.nextLine());
+
         for (Movie m : mList) {
           if (nr == m.id_movie()) {
+            revList = rdb.getByMovieID(nr);
             System.out.println(m);
+            System.out.println("Score:  Review:  Author:");
+            for (Review r : revList) {
+              System.out.println(r.score() + "   " + r.review() + "   " + r.author());
+            }
 
             b = false;
           }
@@ -156,6 +163,10 @@ public class Menu {
     switch(menuChoice) {
     case 1:
       newReview = addReview.addReview(nr);
+      System.out.println("newReview: " + newReview + " + nr: " + nr);
+      Review r = new Review(newReview);
+  //    System.out.println("\nr: " + r);
+       rdb.addReview(r);
       break;
     case 2:
       break;
@@ -168,6 +179,7 @@ public class Menu {
     List<String> movieListByName = new ArrayList<String>();
     List<String> movieListByMovieID = new ArrayList<String>();
 
+    AddReview addRev = new AddReview();
     List<Review> reviewListFullData = rdb.getAllReviewsFullData();
 
     switch(menuChoice) {

@@ -11,7 +11,8 @@ public class ReviewSQL implements FaceReviewDB{
 
   public List<Review> getAllReviewsByMovieId(){
     ArrayList<Review> reviewList = new ArrayList<Review>();
-    ResultSet rs = db.executeQuery("SELECT * FROM movie ORDER BY id_movie");
+    //ResultSet rs = db.executeQuery("SELECT * FROM movie ORDER BY id_movie");
+    ResultSet rs = db.executeQuery("select * from review order by id_movie");
     //("select a.title as title, b.author as author, b.review as review, b.score as score from movie a, review b where a.id_movie = b.id_movie order by id_movie");
     try{
       Review r = null;
@@ -117,22 +118,25 @@ public class ReviewSQL implements FaceReviewDB{
 
   public List<Review> getByMovieID(int id_movie){
     ArrayList<Review> reviewList = new ArrayList<Review>();
-    System.out.println("Get by id_movie: " + id_movie);
-    String SQL = "SELECT * FROM review WHERE id_movie ='" + id_movie + "'";
+//    System.out.println("Get rev by id_movie: " + id_movie);
+    String SQL="SELECT * FROM review WHERE id_movie ='" + id_movie + "'";
 
-    System.out.println("--DEBUG: SQL: " + SQL);
+  //  System.out.prin//tln("--DEBUG: SQL: " + SQL);
     ResultSet rs = db.executeQuery(SQL);
     Review r = null;
     try {
-      if (rs.next()){
+      while (rs.next()){
         r = new Review(rs.getInt("id_review"),
                      rs.getInt("id_movie"),
                      rs.getInt("score"),
                      rs.getString("author"),
                      rs.getString("review"));
         r.setID(rs.getInt("id_review"));
+        reviewList.add(r);
+
       }
-      System.out.println("En ny review: " + r.id_review() + " " + r.review());
+      //System.out.println("En ny review: " + r.id_review() + " " + r.review());
+//      System.out.println("reviewList: " + reviewList);
       return reviewList;
     } catch (Exception e){
       System.err.println("getByMovieID: " + e.getMessage());
