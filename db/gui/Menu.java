@@ -9,7 +9,7 @@ import db.app.ReviewSQL;
 import db.app.FaceReviewDB;
 
 import db.gui.AddMovie;
-import db.gui.AddCharacter;
+import db.gui.AddActor;
 import db.gui.AddReview;
 
 import java.util.Scanner;
@@ -24,7 +24,7 @@ public class Menu {
   private ArrayList<String> addReviewList = new ArrayList<String>();
 
   FaceMovieDB mdb = new MovieSQL();
-  private AddCharacter addChar = new AddCharacter();
+  private AddActor addActor = new AddActor();
 
   FaceReviewDB rdb = new ReviewSQL();
 
@@ -207,6 +207,8 @@ public class Menu {
         Movie m = new Movie(addMovieList);
         System.out.println("\n" + m);
         mdb.addMovie(m);
+        AddActor ac = new AddActor();
+        ac.askForActor();
 //        List<Movie>  movieList = mdb.getAllMovies();
 
 /*        addReviewList = addReview.addReview();
