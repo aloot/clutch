@@ -119,7 +119,7 @@ public class Menu {
     int choice = -1;
     while (choice < 0 || choice > max + 1 ) {
       try {
-        System.out.println(enterSelection);
+        System.out.print(enterSelection);
         choice = Integer.parseInt(sc.nextLine());
       } catch (NumberFormatException nfe) {
         System.out.println("\n" + invalidInput);
