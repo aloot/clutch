@@ -19,7 +19,7 @@ public class AddReview {
     revList.add(author);
     revList.add(review);
 
-    System.out.println("revList: " + revList);
+    //System.out.println("revList: " + revList);
 
     System.out.println("\n ------------");
     System.out.println("|Add a review|");
@@ -28,12 +28,12 @@ public class AddReview {
     System.out.println("\nYour review: ");
     review = sc.nextLine();
     revList.set(3, review);
-    System.out.println("revList: " + revList);
+    //System.out.println("revList: " + revList);
 
     System.out.println("\nYour name: ");
     author = sc.nextLine();
     revList.set(2, author);
-    System.out.println("revList: " + revList);
+    //System.out.println("revList: " + revList);
 
     System.out.println("\nYour score /10: ");
     score = sc.nextInt();
@@ -49,7 +49,7 @@ public class AddReview {
     System.out.println("Name: " + revList.get(2));
     System.out.println("Review: " + revList.get(3));
     System.out.println("Score: " + revList.get(1));
-
+    System.out.println("----------------------------------------");
     return revList;
   }
 }
