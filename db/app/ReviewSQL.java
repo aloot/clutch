@@ -66,9 +66,9 @@ public class ReviewSQL implements FaceReviewDB{
   }
 */
   public void deleteReview(Review r){
-    int id = r.id_review();
+    int id_review = r.id_review();
     String SQL="DELETE FROM review"+
-      " WHERE id_review=" + id;
+      " WHERE id_review=" + id_review;
     System.out.println(db.executeUpdate(SQL) +
                        " rows deleted");
     // What if m.id() returns 0? Think about a solution!
@@ -117,10 +117,9 @@ public class ReviewSQL implements FaceReviewDB{
 
   public List<Review> getByMovieID(int id_movie){
     ArrayList<Review> reviewList = new ArrayList<Review>();
-    System.out.println("Get by id_movie: " + id_movie);
+    //System.out.println("Get by id_movie: " + id_movie);
     String SQL = "SELECT * FROM review WHERE id_movie ='" + id_movie + "'";
-
-    System.out.println("--DEBUG: SQL: " + SQL);
+    //System.out.println("--DEBUG: SQL: " + SQL);
     ResultSet rs = db.executeQuery(SQL);
     Review r = null;
     try {
@@ -141,12 +140,11 @@ public class ReviewSQL implements FaceReviewDB{
     }
     return null;
   }
-//***
-  public Review getByReviewID(int id_review){
-    System.out.println("Get id_review: " + id_review);
-    String SQL = "SELECT * FROM review WHERE id_review =" + id_review;
 
-    System.out.println("--DEBUG: SQL: " + SQL);
+  public Review getByReviewID(int id_review){
+    //System.out.println("Get id_review: " + id_review);
+    String SQL = "SELECT * FROM review WHERE id_review =" + id_review;
+    //System.out.println("--DEBUG: SQL: " + SQL);
     ResultSet rs = db.executeQuery(SQL);
     System.out.println(rs);
     Review r = null;
@@ -159,7 +157,6 @@ public class ReviewSQL implements FaceReviewDB{
                      rs.getString("review"));
         r.setID(rs.getInt("id_review"));
       }
-
 
       System.out.println("En ny review: " + r.review());
       return r;
