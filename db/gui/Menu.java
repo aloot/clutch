@@ -163,7 +163,7 @@ public class Menu {
     switch(menuChoice) {
     case 1:
       newReview = addReview.addReview(nr);
-      System.out.println("newReview: " + newReview + " + nr: " + nr);
+  //    System.out.println("newReview: " + newReview + " + nr: " + nr);
       Review r = new Review(newReview);
   //    System.out.println("\nr: " + r);
        rdb.addReview(r);

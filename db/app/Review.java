@@ -37,7 +37,7 @@ public class Review {
    this.score = Integer.parseInt(props.get(1));
    this.author = props.get(2);
    this.review = props.get(3);
-   System.out.println("da rev: " + this);
+//   System.out.println("da rev: " + this);
  }
 
   /**

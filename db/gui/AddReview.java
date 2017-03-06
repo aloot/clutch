@@ -45,7 +45,10 @@ public class AddReview {
 //    String strScore = toString(score);
     String strScore = Integer.toString(score);
     revList.set(1, strScore);
-    System.out.println("revList: " + revList);
+//    System.out.println("revList: " + revList);
+    System.out.println("Name: " + revList.get(2));
+    System.out.println("Review: " + revList.get(3));
+    System.out.println("Score: " + revList.get(1));
 
     return revList;
   }
