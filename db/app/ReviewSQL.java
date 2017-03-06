@@ -135,7 +135,7 @@ public class ReviewSQL implements FaceReviewDB{
 
       }
       //System.out.println("En ny review: " + r.id_review() + " " + r.review());
-//      System.out.println("reviewList: " + reviewList);
+      System.out.println("ReviewList: " + reviewList);
       return reviewList;
     } catch (Exception e){
       System.err.println("getByMovieID: " + e.getMessage());
