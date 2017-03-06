@@ -34,27 +34,27 @@ public class AddMovie {
       addMovieList.add(newName);
 
 
-      System.out.println("\nGenre of movie:");
+      System.out.print("\nGenre of movie: ");
       genre = in.nextLine();
       addMovieList.add(genre);
 
-      System.out.println("\nRecommended age for movie:");
+      System.out.print("\nRecommended age for movie: ");
       age = in.nextLine();
       addMovieList.add(age);
 
-      System.out.println("\nProduction company:");
+      System.out.print("\nProduction company: ");
       company = in.nextLine();
       addMovieList.add(company);
 
-      System.out.println("\nYear movie was produced:");
+      System.out.print("\nYear movie was produced: ");
       year = in.nextLine();
       addMovieList.add(year);
 
-      System.out.println("\nSynopsis:");
+      System.out.print("\nSynopsis: ");
       synopsis = in.nextLine();
       addMovieList.add(synopsis);
 
-      System.out.println("\nDirector of the movie:");
+      System.out.print("\nDirector of the movie: ");
       director = in.nextLine();
       addMovieList.add(director);
 

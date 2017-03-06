@@ -104,7 +104,7 @@ public class Menu {
     int menuChoice = -1;
     while (menuChoice < 0 || menuChoice > 6) {
       try {
-        printMenu();
+        //printMenu();
         System.out.print("\nEnter your selection: ");
         menuChoice = Integer.parseInt(sc.nextLine());
       } catch (NumberFormatException e) {
@@ -144,9 +144,9 @@ public class Menu {
           if (nr == m.id_movie()) {
             revList = rdb.getByMovieID(nr);
             System.out.println(m);
-            System.out.println("\nScore:  Review:  Author:");
+            System.out.println("\nScore:   Review:   Author:");
             for (Review r : revList) {
-              System.out.println(r.score() + "   " + r.review() + "   " + r.author());
+              System.out.println(r.score() + "       " + r.author() + "   " + "/" + r.review());
             }
 
             b = false;
@@ -186,20 +186,21 @@ public class Menu {
       case 1: // list movies
       movieListByName = mdb.getAllMoviesByTitle();
       System.out.println("\nAll movies listed so far:");
-      System.out.println("ID  Movie\n-----------------");
+      System.out.println("\nID  Movie\n-----------------------");
       int counter = 1;
       for (Movie m : movieListFullData) {
         System.out.print(m.id_movie() + "   " + m.title());
   //      System.out.println("\nID  Movie");
         counter = counter + 1;
-        System.out.println(", counter: " + counter);
+        System.out.println("");
       }
-      System.out.println("------------End of List-----------------");
+      //System.out.println("------------End of List-----------------");
 
 /*      System.out.println(enterSelection);
       String movieSelection = sc.nextLine();
       showMovie(movieSelection, movieListFullData);*/
       showMovie(movieListFullData);
+      printMenu();
       break;
 
       case 2: // add movie
@@ -207,8 +208,6 @@ public class Menu {
         Movie m = new Movie(addMovieList);
         System.out.println("\n" + m);
         mdb.addMovie(m);
-        AddActor ac = new AddActor();
-        ac.askForActor();
 //        List<Movie>  movieList = mdb.getAllMovies();
 
 /*        addReviewList = addReview.addReview();

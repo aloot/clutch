@@ -21,21 +21,17 @@ public class AddReview {
 
     //System.out.println("revList: " + revList);
 
-    System.out.println("\n ------------");
-    System.out.println("|Add a review|");
-    System.out.println(" ------------");
-
-    System.out.println("\nYour review: ");
-    review = sc.nextLine();
-    revList.set(3, review);
-    //System.out.println("revList: " + revList);
-
-    System.out.println("\nYour name: ");
+    System.out.print("\nYour name: ");
     author = sc.nextLine();
-    revList.set(2, author);
+    revList.set(3, author);
     //System.out.println("revList: " + revList);
 
-    System.out.println("\nYour score /10: ");
+    System.out.print("\nYour review: ");
+    review = sc.nextLine();
+    revList.set(2, review);
+    //System.out.println("revList: " + revList);
+
+    System.out.print("\nYour score /10: ");
     score = sc.nextInt();
     while (score < 0 || score > 10) {
       System.out.println("\nInvalid score, choose a number from 0 to 10!");
@@ -46,10 +42,9 @@ public class AddReview {
     String strScore = Integer.toString(score);
     revList.set(1, strScore);
 //    System.out.println("revList: " + revList);
-    System.out.println("Name: " + revList.get(2));
-    System.out.println("Review: " + revList.get(3));
-    System.out.println("Score: " + revList.get(1));
-    System.out.println("----------------------------------------");
+    System.out.println("\nName:     " + revList.get(3));
+    System.out.println("Review:   " + revList.get(2));
+    System.out.println("Score:    " + revList.get(1));
     return revList;
   }
 }
