@@ -21,9 +21,18 @@ public class AddMovie {
   public ArrayList<String> addMovie() {
 
     Scanner in = new Scanner(System.in);
-      System.out.println("\nName of movie:");
+
+      System.out.print("\nTitle of movie: ");
       name = in.nextLine();
-      addMovieList.add(name);
+      do {
+        if (name.trim().isEmpty()){
+          System.out.print("\nTitle can not be empty, please enter a valid title: ");
+          name = in.nextLine();
+        }
+      } while (name.trim().isEmpty());
+      String newName = name.trim();
+      addMovieList.add(newName);
+
 
       System.out.println("\nGenre of movie:");
       genre = in.nextLine();
