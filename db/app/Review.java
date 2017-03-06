@@ -33,10 +33,11 @@ public class Review {
 
   public Review (ArrayList<String> props){
    this.id_review = 0;
-   this.id_movie = Integer.parseInt(props.get(1));
-   this.score = Integer.parseInt(props.get(2));
-   this.author = props.get(3);
-   this.review = props.get(4);
+   this.id_movie = Integer.parseInt(props.get(0));
+   this.score = Integer.parseInt(props.get(1));
+   this.author = props.get(2);
+   this.review = props.get(3);
+//   System.out.println("da rev: " + this);
  }
 
   /**
