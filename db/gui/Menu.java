@@ -28,8 +28,8 @@ public class Menu {
 
   FaceReviewDB rdb = new ReviewSQL();
 
-  private String enterSelection = "-Enter your selection: ";
-  private String invalidInput = "Invalid input! Try again...";
+  private String enterSelection = "\nEnter your selection: ";
+  private String invalidInput = "\nInvalid input! Try again...";
 //-----------------------------//
   public void runMenu() {
     printMenu();
@@ -80,7 +80,7 @@ public class Menu {
     int loginChoice = -1;
     while (loginChoice < 0 || loginChoice > 3) {
       try {
-        System.out.print("\n--Enter your selection: ");
+        System.out.print("\nEnter your selection: ");
         loginChoice = Integer.parseInt(sc.nextLine());
       } catch (NumberFormatException e) {
         System.out.println("\nInvalid input! Try again...");
@@ -144,7 +144,7 @@ public class Menu {
           if (nr == m.id_movie()) {
             revList = rdb.getByMovieID(nr);
             System.out.println(m);
-            System.out.println("Score:  Review:  Author:");
+            System.out.println("\nScore:  Review:  Author:");
             for (Review r : revList) {
               System.out.println(r.score() + "   " + r.review() + "   " + r.author());
             }
@@ -157,7 +157,7 @@ public class Menu {
       }
     }
 
-    System.out.println("1. Add review");
+    System.out.println("\n1. Add review");
     System.out.println("2. Back");
     int menuChoice = mChoice(2);
     switch(menuChoice) {
