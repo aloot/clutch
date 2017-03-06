@@ -9,7 +9,7 @@ import db.app.ReviewSQL;
 import db.app.FaceReviewDB;
 
 import db.gui.AddMovie;
-import db.gui.AddCharacter;
+import db.gui.AddActor;
 import db.gui.AddReview;
 
 import java.util.Scanner;
@@ -24,12 +24,12 @@ public class Menu {
   private ArrayList<String> addReviewList = new ArrayList<String>();
 
   FaceMovieDB mdb = new MovieSQL();
-  private AddCharacter addChar = new AddCharacter();
+  private AddActor addActor = new AddActor();
 
   FaceReviewDB rdb = new ReviewSQL();
 
-  private String enterSelection = "-Enter your selection: ";
-  private String invalidInput = "Invalid input! Try again...";
+  private String enterSelection = "\nEnter your selection: ";
+  private String invalidInput = "\nInvalid input! Try again...";
 //-----------------------------//
   public void runMenu() {
     printMenu();
@@ -80,7 +80,7 @@ public class Menu {
     int loginChoice = -1;
     while (loginChoice < 0 || loginChoice > 3) {
       try {
-        System.out.print("\n--Enter your selection: ");
+        System.out.print("\nEnter your selection: ");
         loginChoice = Integer.parseInt(sc.nextLine());
       } catch (NumberFormatException e) {
         System.out.println("\nInvalid input! Try again...");
@@ -132,15 +132,22 @@ public class Menu {
   private void showMovie(List<Movie> mList) {
     AddReview addReview = new AddReview();
     ArrayList<String> newReview;
+    List<Review> revList;
     int nr = -1;
     boolean b = true;
     while (b) {
       try {
         System.out.print("\nEnter a movie number: ");
         nr = Integer.parseInt(sc.nextLine());
+
         for (Movie m : mList) {
           if (nr == m.id_movie()) {
+            revList = rdb.getByMovieID(nr);
             System.out.println(m);
+            System.out.println("\nScore:  Review:  Author:");
+            for (Review r : revList) {
+              System.out.println(r.score() + "   " + r.review() + "   " + r.author());
+            }
 
             b = false;
           }
@@ -150,12 +157,16 @@ public class Menu {
       }
     }
 
-    System.out.println("1. Add review");
+    System.out.println("\n1. Add review");
     System.out.println("2. Back");
     int menuChoice = mChoice(2);
     switch(menuChoice) {
     case 1:
       newReview = addReview.addReview(nr);
+  //    System.out.println("newReview: " + newReview + " + nr: " + nr);
+      Review r = new Review(newReview);
+  //    System.out.println("\nr: " + r);
+       rdb.addReview(r);
       break;
     case 2:
       break;
@@ -168,6 +179,7 @@ public class Menu {
     List<String> movieListByName = new ArrayList<String>();
     List<String> movieListByMovieID = new ArrayList<String>();
 
+    AddReview addRev = new AddReview();
     List<Review> reviewListFullData = rdb.getAllReviewsFullData();
 
     switch(menuChoice) {
@@ -195,6 +207,8 @@ public class Menu {
         Movie m = new Movie(addMovieList);
         System.out.println("\n" + m);
         mdb.addMovie(m);
+        AddActor ac = new AddActor();
+        ac.askForActor();
 //        List<Movie>  movieList = mdb.getAllMovies();
 
 /*        addReviewList = addReview.addReview();
