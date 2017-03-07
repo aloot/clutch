@@ -119,9 +119,9 @@ public class Movie{
 
   @Override // ta bort id_movie från utskrift
   public String toString(){
-    return "Movie ID:          " + id_movie + "\n" + "Movie title:       " + title + "\n" + "Movie genre:       " + genre + "\n" + "Age rating:        "
+    return "\nMovie ID:          " + id_movie + "\n" + "Movie title:       " + title + "\n" + "Movie genre:       " + genre + "\n" + "Age rating:        "
       + age + "\n" + "Prod. Company:     " + prod_company + "\n" + "Prod. year:        " + prod_year + "\n" +
-      "Synopsis:          " + synopsis + "\n" + "Director:          " + director + "\n----------------------------------------";
+      "Synopsis:          " + synopsis + "\n" + "Director:          " + director;
   }
 
   /**

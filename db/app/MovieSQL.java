@@ -120,10 +120,10 @@ public class MovieSQL implements FaceMovieDB{
   }
 
   public Movie getByTitle(String title){
-    System.out.println("Get Namnet: " + title);
+    //System.out.println("Get Namnet: " + title);
     String SQL="SELECT * FROM movie WHERE title ='" + title + "'";
 
-    System.out.println("--DEBUG: SQL: " + SQL);
+    //System.out.println("--DEBUG: SQL: " + SQL);
     ResultSet rs = db.executeQuery(SQL);
     Movie m = null;
     try {
@@ -138,7 +138,7 @@ public class MovieSQL implements FaceMovieDB{
                      rs.getString("director"));
         m.setID(rs.getInt("id_movie"));
       }
-      System.out.println("EttNyttM: " + m.title());
+      //System.out.println("EttNyttM: " + m.title());
       return m;
     } catch (Exception e){
       System.err.println("getByTitle: " + e.getMessage());
@@ -170,7 +170,7 @@ public class MovieSQL implements FaceMovieDB{
       }
 
 
-      System.out.println("EttNyttM: " + m.title());
+      //System.out.println("EttNyttM: " + m.title());
       return m;
     } catch (Exception e){
       System.err.println("getByID: " + e.getMessage());
