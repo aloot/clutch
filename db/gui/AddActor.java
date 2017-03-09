@@ -29,7 +29,7 @@ public class AddActor {
 
     System.out.print("\nCharacter in this movie: ");
     character =   sc.nextLine();
-    System.out.print("\nDate of birth: ");
+    System.out.print("\nDate of birth [XXXX-XX-XX]: ");
     birth =       sc.nextLine();
     System.out.print("\nNationality: ");
     nationality = sc.nextLine();

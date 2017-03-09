@@ -24,8 +24,7 @@ public class Menu {
   private ArrayList<String> addReviewList = new ArrayList<String>();
 
   FaceMovieDB mdb = new MovieSQL();
-  private AddActor addActor = new AddActor();
-
+  AddActor addActor = new AddActor();
   FaceReviewDB rdb = new ReviewSQL();
 
   private String enterSelection = "\nEnter your selection: ";
@@ -34,7 +33,6 @@ public class Menu {
   public void runMenu() {
     printMenu();
       while(!exit) {
-    //    printMenu();
         int menuChoice = menuInput();
         performSelection(menuChoice);
       }
@@ -73,17 +71,17 @@ public class Menu {
     }
   }
 //---------------------//
-/*
-* Login guest, admin, exit
-*/
+
+//Login guest, admin, exit
+
   public int loginMenuInput() {
     int loginChoice = -1;
     while (loginChoice < 0 || loginChoice > 3) {
       try {
-        System.out.print("\nEnter your selection: ");
+        System.out.print(enterSelection);
         loginChoice = Integer.parseInt(sc.nextLine());
       } catch (NumberFormatException e) {
-        System.out.println("\nInvalid input! Try again...");
+        System.out.println(invalidInput);
         }
     } return loginChoice;
   }
@@ -95,7 +93,7 @@ public class Menu {
   public void printMenu() {
     System.out.println("\n1. List movies");
     System.out.println("\n2. Add movies");
-    System.out.println("\n3. Add actor");
+    System.out.println("\n3. List Actors");
     System.out.println("\n4. Help/about Clutch-MDb");
     System.out.println("\n5. Back to login");
     System.out.println("\n6. -- Exit -- ");
@@ -106,10 +104,10 @@ public class Menu {
     while (menuChoice < 0 || menuChoice > 6) {
       try {
         //printMenu();
-        System.out.print("\nEnter your selection: ");
+        System.out.print(enterSelection);
         menuChoice = Integer.parseInt(sc.nextLine());
       } catch (NumberFormatException e) {
-        System.out.println("\nInvalid input! Try again...");
+        System.out.println(invalidInput);
         }
     } return menuChoice;
   }
@@ -123,7 +121,7 @@ public class Menu {
         System.out.print(enterSelection);
         choice = Integer.parseInt(sc.nextLine());
       } catch (NumberFormatException nfe) {
-        System.out.println("\n" + invalidInput);
+        System.out.println(invalidInput);
       }
     }
     //System.out.println("choice: " + choice);
@@ -145,9 +143,9 @@ public class Menu {
           if (nr == m.id_movie()) {
             revList = rdb.getByMovieID(nr);
             System.out.println(m);
-            System.out.println("\nScore:   Author:   Review:");
+            System.out.println("\nScore:     Author:     Review:");
             for (Review r : revList) {
-              System.out.println(r.score() + "        " + "/" + r.author() + "   " + r.review());
+              System.out.println(r.score() + "          " + "/" + r.author() + "     " + r.review());
             }
 
             b = false;
@@ -162,17 +160,17 @@ public class Menu {
     System.out.println("2. Back");
     int menuChoice = mChoice(2);
     switch(menuChoice) {
-    case 1:
-      newReview = addReview.addReview(nr);
+      case 1:
+        newReview = addReview.addReview(nr);
   //    System.out.println("newReview: " + newReview + " + nr: " + nr);
-      Review r = new Review(newReview);
+        Review r = new Review(newReview);
   //    System.out.println("\nr: " + r);
-       rdb.addReview(r);
-      break;
-    case 2:
-      break;
+        rdb.addReview(r);
+        break;
+      case 2:
+        break;
+      }
     }
-  }
 //----------------------------------------------//
   public void performSelection(int menuChoice) {
     AddMovie addMovie = new AddMovie();
@@ -185,24 +183,24 @@ public class Menu {
 
     switch(menuChoice) {
       case 1: // list movies
-      movieListByName = mdb.getAllMoviesByTitle();
-      System.out.println("\nAll movies listed so far:");
-      System.out.println("\nID  Movie\n-----------------------");
-      int counter = 1;
-      for (Movie m : movieListFullData) {
-        System.out.print(m.id_movie() + "   " + m.title());
+        movieListByName = mdb.getAllMoviesByTitle();
+        System.out.println("\nAll movies listed so far:");
+        System.out.println("\nID  Movie\n-----------------------");
+        int counter = 1;
+        for (Movie m : movieListFullData) {
+          System.out.print(m.id_movie() + "   " + m.title());
   //      System.out.println("\nID  Movie");
-        counter = counter + 1;
-        System.out.println("");
-      }
-      //System.out.println("------------End of List-----------------");
+          counter = counter + 1;
+          System.out.println("");
+        }
+
 
 /*      System.out.println(enterSelection);
-      String movieSelection = sc.nextLine();
-      showMovie(movieSelection, movieListFullData);*/
-      showMovie(movieListFullData);
-      printMenu();
-      break;
+        String movieSelection = sc.nextLine();
+        showMovie(movieSelection, movieListFullData);*/
+        showMovie(movieListFullData);
+        printMenu();
+        break;
 
       case 2: // add movie
         addMovieList = addMovie.addMovie();
@@ -237,24 +235,9 @@ public class Menu {
         db.addReview(r);
         break; */
       case 3:
-        movieListByName = mdb.getAllMoviesByTitle();
-        System.out.println("\nAll movies listed so far:");
-        System.out.println("\nID  Movie\n-----------------------");
-        int counter_2 = 1;
-        for (Movie m_2 : movieListFullData) {
-          System.out.print(m_2.id_movie() + "   " + m_2.title());
-  //      System.out.println("\nID  Movie");
-          counter_2 = counter_2 + 1;
-          System.out.println("");
-        }
-      //System.out.println("------------End of List-----------------");
 
-      /*System.out.println(enterSelection);
-        String movieSelection = sc.nextLine();
-        showMovie(movieSelection, movieListFullData);*/
-        showMovie(movieListFullData);
-        addActor.addActor();
-        printMenu();
+        //addActor.addActor();
+        //printMenu();
         break;
 
       case 4: // help/ about
