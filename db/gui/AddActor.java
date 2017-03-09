@@ -19,7 +19,7 @@ public class AddActor {
     System.out.print("\nActor name: ");
     actorName = sc.nextLine();
     do {
-      if (actorName.trim().isEmpty()){
+      if (actorName.trim().isEmpty()) {
         System.out.print("\nName can not be empty, please enter a name: ");
         actorName = sc.nextLine();
       }
@@ -33,7 +33,7 @@ public class AddActor {
     birth =       sc.nextLine();
     System.out.print("\nNationality: ");
     nationality = sc.nextLine();
-    System.out.print("\nBiography:");
+    System.out.print("\nBiography: ");
     biography =   sc.nextLine();
 
     return addActorList;

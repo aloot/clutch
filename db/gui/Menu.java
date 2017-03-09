@@ -95,9 +95,10 @@ public class Menu {
   public void printMenu() {
     System.out.println("\n1. List movies");
     System.out.println("\n2. Add movies");
-    System.out.println("\n3. Help/about Clutch-MDb");
-    System.out.println("\n4. Back to login");
-    System.out.println("\n5. -- exit -- ");
+    System.out.println("\n3. Add actor");
+    System.out.println("\n4. Help/about Clutch-MDb");
+    System.out.println("\n5. Back to login");
+    System.out.println("\n6. -- Exit -- ");
   }
 //--------------------------------------//
   public int menuInput() {
@@ -144,9 +145,9 @@ public class Menu {
           if (nr == m.id_movie()) {
             revList = rdb.getByMovieID(nr);
             System.out.println(m);
-            System.out.println("\nScore:   Review:   Author:");
+            System.out.println("\nScore:   Author:   Review:");
             for (Review r : revList) {
-              System.out.println(r.score() + "       " + r.author() + "   " + "/" + r.review());
+              System.out.println(r.score() + "        " + "/" + r.author() + "   " + r.review());
             }
 
             b = false;
@@ -226,6 +227,7 @@ public class Menu {
         db.addChar(c);
       }
         */
+        printMenu();
         break;
 
 /*      case 3: // add revieew/ score
@@ -234,16 +236,37 @@ public class Menu {
         System.out.println("\n" + r);
         db.addReview(r);
         break; */
+      case 3:
+        movieListByName = mdb.getAllMoviesByTitle();
+        System.out.println("\nAll movies listed so far:");
+        System.out.println("\nID  Movie\n-----------------------");
+        int counter_2 = 1;
+        for (Movie m_2 : movieListFullData) {
+          System.out.print(m_2.id_movie() + "   " + m_2.title());
+  //      System.out.println("\nID  Movie");
+          counter_2 = counter_2 + 1;
+          System.out.println("");
+        }
+      //System.out.println("------------End of List-----------------");
 
-      case 3: // help/ about
-        helpMenu();
+      /*System.out.println(enterSelection);
+        String movieSelection = sc.nextLine();
+        showMovie(movieSelection, movieListFullData);*/
+        showMovie(movieListFullData);
+        addActor.addActor();
+        printMenu();
         break;
 
-      case 4: // back to login
+      case 4: // help/ about
+        helpMenu();
+        printMenu();
+        break;
+
+      case 5: // back to login
         runLoginMenu();
         break;
 
-      case 5: // quick exit
+      case 6: // quick exit
         System.exit(1);
         break;
       default:
