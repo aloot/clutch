@@ -91,8 +91,8 @@ public class ReviewSQL implements FaceReviewDB{
       "'" + author + "', " +
       "'" + review + "')";
 //      System.out.println("sql-et: " + SQL);
-    System.out.println(db.executeUpdate(SQL)+
-                       " rows inserted");
+//    System.out.println(db.executeUpdate(SQL)+
+//                       " rows inserted");
 
     /* r doesn't have an ID yet. Let's find it... */
     /*
@@ -135,7 +135,7 @@ public class ReviewSQL implements FaceReviewDB{
 
       }
       //System.out.println("En ny review: " + r.id_review() + " " + r.review());
-      System.out.println("ReviewList: " + reviewList);
+      //System.out.println("ReviewList: " + reviewList);
       return reviewList;
     } catch (Exception e){
       System.err.println("getByMovieID: " + e.getMessage());
