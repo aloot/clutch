@@ -11,9 +11,9 @@ import db.gui.AddReview;
 import db.app.ReviewSQL;
 import db.app.FaceReviewDB;
 
-import db.app.Actor;
-import db.gui.AddActor;
-import db.gui.ActorSQL;
+//import db.app.Actor;
+//import db.gui.AddActor;
+//import db.gui.ActorSQL;
 
 import db.app.MovieActor;
 import db.app.MovieActorSQL;
@@ -173,7 +173,7 @@ performSelection
             for (Review r : revList) {
               System.out.println(r.score() + "          " + "/" + r.author() + "     " + r.review());
             }
-            int counter = 1;
+  /*          int counter = 1;
             actList = adb.getByMovieID(movieNr);
             System.out.println("\nActors:");
             for (MovieActor ma : actList) {
@@ -182,7 +182,7 @@ performSelection
                 counter ++;
               }
             }
-            System.out.println();
+            System.out.println();*/
             b = false;
           }
         }
