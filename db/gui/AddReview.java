@@ -9,8 +9,8 @@ public class AddReview {
   //
   public ArrayList<String> addReview(int nr) {
   //  int id_review;
-    int id_movie = nr;
-    int score = -1;
+    int id_movie  = nr;
+    int score     = -1;
     String author = "";
     String review = "";
 
@@ -34,13 +34,20 @@ public class AddReview {
     revList.set(2, review);
     //System.out.println("revList: " + revList);
 
-    System.out.print("\nYour score /10: ");
-    score = sc.nextInt();
-    while (score < 0 || score > 10) {
-      System.out.println("\nInvalid score, choose a number from 0 to 10!");
-      System.out.println("\nYour score /10: ");
+    System.out.print("\nYour score [0-10]: ");
+    do {
+      while (!sc.hasNextInt()) {
+        sc.next();
+        System.out.print("\nInvalid input!");
+        System.out.print("\nPlease enter a number from 0-10: ");
+      }
       score = sc.nextInt();
-    }
+      if (!(score >= 0 && score <= 10)) {
+        System.out.print("\nInvalid input!");
+        System.out.print("\nPlease enter a number from 0-10: ");
+      }
+    } while (!(score >= 0 && score <= 10 ));
+
 //    String strScore = toString(score);
     String strScore = Integer.toString(score);
     revList.set(1, strScore);
