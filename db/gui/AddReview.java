@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class AddReview {
 
+  // Returns an ArrayList with all fields a Review holds,
+  // back to Menu
+  //
   public ArrayList<String> addReview(int nr) {
   //  int id_review;
     int id_movie = nr;
