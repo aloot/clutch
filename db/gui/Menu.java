@@ -15,9 +15,9 @@ import db.app.FaceReviewDB;
 //import db.gui.AddActor;
 //import db.gui.ActorSQL;
 
-import db.app.MovieActor;
-import db.app.MovieActorSQL;
-import db.app.FaceMovieActorDB;
+//import db.app.MovieActor;
+//import db.app.MovieActorSQL;
+//import db.app.FaceMovieActorDB;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class Menu {
   private Scanner sc = new Scanner(System.in);
   private ArrayList<String> addMovieList = new ArrayList<String>();
   private ArrayList<String> addReviewList = new ArrayList<String>();
-  private ArrayList<MovieActor> actList = new ArrayList<MovieActor>();
+  //private ArrayList<MovieActor> actList = new ArrayList<MovieActor>();
 
   FaceMovieDB mdb = new MovieSQL();
   FaceReviewDB rdb = new ReviewSQL();
@@ -42,7 +42,7 @@ public class Menu {
 //-----------------------------//
 //-----------------------------//
   public void runMenu() {
-    System.out.println("runMenu: ");
+  //  System.out.println("runMenu: ");
     printMenu();
       while(!exit) {
         int menuChoice = menuInput();
@@ -124,6 +124,7 @@ performSelection
     while (menuChoice < 0 || menuChoice > 7) {
       try {
 //        printMenu();
+        System.out.print(enterSelection);
         menuChoice = Integer.parseInt(sc.nextLine());
       } catch (NumberFormatException e) {
         System.out.println(invalidInput);
@@ -155,7 +156,7 @@ performSelection
 
     AddActor addAct = new AddActor();
     ArrayList<String> newAct;
-    List<MovieActor> actList;
+    //List<MovieActor> actList;
 
     int movieNr = -1;
     boolean b = true;
@@ -254,6 +255,7 @@ performSelection
         Movie m = new Movie(addMovieList);
         System.out.println("\n" + m);
         mdb.addMovie(m);
+        runMenu();
         break;
 
       case 3: // List actors
