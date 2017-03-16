@@ -26,6 +26,10 @@ public class AddReview {
 
     System.out.print("\nYour name: ");
     author = sc.nextLine();
+    while (author.equals("")) {
+      System.out.print("\nYou must enter a name (it doesn´t have to be your real name): ");
+      author = sc.nextLine();
+    }
     revList.set(3, author);
     //System.out.println("revList: " + revList);
 
@@ -35,16 +39,18 @@ public class AddReview {
     //System.out.println("revList: " + revList);
 
     System.out.print("\nYour score [0-10]: ");
+    
     do {
       while (!sc.hasNextInt()) {
         sc.next();
-        System.out.print("\nInvalid input!");
-        System.out.print("\nPlease enter a number from 0-10: ");
+        System.out.print("\nInvalid input! ");
+        System.out.print("Please enter a number from 0-10: ");
       }
       score = sc.nextInt();
+
       if (!(score >= 0 && score <= 10)) {
-        System.out.print("\nInvalid input!");
-        System.out.print("\nPlease enter a number from 0-10: ");
+        System.out.print("\nInvalid input! ");
+        System.out.print("Please enter a number from 0-10: ");
       }
     } while (!(score >= 0 && score <= 10 ));
 
