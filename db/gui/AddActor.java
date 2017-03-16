@@ -19,6 +19,11 @@ public class AddActor {
     System.out.print("\nActor name: ");
     actorName = sc.nextLine();
     do {
+      while (actorName.matches(".*\\d.*")){
+        System.out.println("\n'Actor Name' cannot contain digits!");
+        System.out.print("\nPlease enter a valid 'Actor name': ");
+        actorName = sc.nextLine();
+      }
       if (actorName.trim().isEmpty()) {
         System.out.print("\nName can not be empty, please enter a name: ");
         actorName = sc.nextLine();
