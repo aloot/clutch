@@ -38,8 +38,24 @@ public class AddReview {
     revList.set(2, review);
     //System.out.println("revList: " + revList);
 
-    System.out.print("\nYour score [0-10]: ");
-    
+    for (;;) {
+      System.out.print("\nYour score [0-10]: ");
+      String line = sc.nextLine();
+      try {
+        score = Integer.parseInt(line.trim());
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input! Not a valid number.");
+        continue;
+      }
+      if (score < 0 || score > 10) {
+        System.out.println("Invalid input! Out of range.");
+        continue;
+      }
+      break;
+    }
+
+    /* System.out.print("\nYour score [0-10]: ");
+
     do {
       while (!sc.hasNextInt()) {
         sc.next();
@@ -52,7 +68,7 @@ public class AddReview {
         System.out.print("\nInvalid input! ");
         System.out.print("Please enter a number from 0-10: ");
       }
-    } while (!(score >= 0 && score <= 10 ));
+    } while (!(score >= 0 && score <= 10 )); */
 
 //    String strScore = toString(score);
     String strScore = Integer.toString(score);
