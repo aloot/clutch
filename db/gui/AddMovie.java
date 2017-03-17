@@ -8,11 +8,12 @@ import java.util.ArrayList;
 public class AddMovie {
 
   public ArrayList<String> addMovieList = new ArrayList<String>();
-  private String name = "";
-  private String genre = "";
-  private String age = "";
-  private String company = "";
-  private String year = "";
+  private String name     = "";
+  private String genre    = "";
+  private String age      = "";
+  private String company  = "";
+  private String year     = "";
+  private int yearInt     = -1;
   private String synopsis = "";
   private String director = "";
 
@@ -33,7 +34,6 @@ public class AddMovie {
       String newName = name.trim();
       addMovieList.add(newName);
 
-
       System.out.print("\nGenre of movie: ");
       genre = in.nextLine();
       addMovieList.add(genre);
@@ -46,8 +46,26 @@ public class AddMovie {
       company = in.nextLine();
       addMovieList.add(company);
 
-      System.out.print("\nYear movie was produced: ");
+      /*System.out.print("\nYear movie was produced: ");
       year = in.nextLine();
+      addMovieList.add(year);*/
+
+      for (;;) {
+        System.out.print("\nYear movie was produced: ");
+        String line = in.nextLine();
+        try {
+          yearInt = Integer.parseInt(line.trim());
+        } catch (NumberFormatException e) {
+          System.out.println("Invalid input! Not a valid number.");
+          continue;
+        }
+        if (yearInt < 1896 || yearInt > 2017) {
+          System.out.println("Invalid input! Out of range.");
+          continue;
+        }
+        break;
+      }
+      String year = Integer.toString(yearInt);
       addMovieList.add(year);
 
       System.out.print("\nSynopsis: ");
