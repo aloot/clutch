@@ -8,15 +8,16 @@ import java.util.ArrayList;
 public class AddMovie {
 
   public ArrayList<String> addMovieList = new ArrayList<String>();
-  private String name     = "";
-  private String genre    = "";
-  private String age      = "";
-  private String company  = "";
-  private String year     = "";
-  private int yearInt     = -1;
-  private int ageInt      = -1;
-  private String synopsis = "";
-  private String director = "";
+  private String name       = "";
+  private String genre      = "";
+  private String genreInput = "";
+  private String age        = "";
+  private String company    = "";
+  private String year       = "";
+  private int yearInt       = -1;
+  private int ageInt        = -1;
+  private String synopsis   = "";
+  private String director   = "";
 
   //private Character c = new Character();
 
@@ -36,7 +37,9 @@ public class AddMovie {
       addMovieList.add(newName);
 
       System.out.print("\nGenre of movie: ");
-      genre = in.nextLine();
+      genreInput = in.nextLine();
+      String genre = genreInput.toLowerCase();
+      System.out.println(genre);
       while (!genre.equals("action") && !genre.equals("drama") && !genre.equals("comedy") && !genre.equals("family") && !genre.equals("horror") && !genre.equals("thriller") && !genre.equals("musical") && !genre.equals("western") && !genre.equals("war") && !genre.equals("fantasy") && !genre.equals("adventure")) {
         System.out.println("\n[action]");
         System.out.println("[adventure]");
@@ -51,7 +54,9 @@ public class AddMovie {
         System.out.println("[western]");
         System.out.println("\nIvalid input!");
         System.out.print("\nPlease choose any of the genres above: ");
-        genre = in.nextLine();
+        genreInput = in.nextLine();
+        genre = genreInput.toLowerCase();
+        System.out.println(genre);
       }
       addMovieList.add(genre);
 
