@@ -22,6 +22,8 @@ public class AddReview {
     revList.add(author);
     revList.add(review);
 
+
+
     //System.out.println("revList: " + revList);
 
     System.out.print("\nYour name: ");
@@ -53,22 +55,6 @@ public class AddReview {
       }
       break;
     }
-
-    /* System.out.print("\nYour score [0-10]: ");
-
-    do {
-      while (!sc.hasNextInt()) {
-        sc.next();
-        System.out.print("\nInvalid input! ");
-        System.out.print("Please enter a number from 0-10: ");
-      }
-      score = sc.nextInt();
-
-      if (!(score >= 0 && score <= 10)) {
-        System.out.print("\nInvalid input! ");
-        System.out.print("Please enter a number from 0-10: ");
-      }
-    } while (!(score >= 0 && score <= 10 )); */
 
 //    String strScore = toString(score);
     String strScore = Integer.toString(score);

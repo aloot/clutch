@@ -37,6 +37,22 @@ public class AddMovie {
 
       System.out.print("\nGenre of movie: ");
       genre = in.nextLine();
+      while (!genre.equals("action") && !genre.equals("drama") && !genre.equals("comedy") && !genre.equals("family") && !genre.equals("horror") && !genre.equals("thriller") && !genre.equals("musical") && !genre.equals("western") && !genre.equals("war") && !genre.equals("fantasy") && !genre.equals("adventure")) {
+        System.out.println("\n[action]");
+        System.out.println("[adventure]");
+        System.out.println("[comdey]");
+        System.out.println("[drama]");
+        System.out.println("[family]");
+        System.out.println("[fantasy]");
+        System.out.println("[horror]");
+        System.out.println("[musical]");
+        System.out.println("[thriller]");
+        System.out.println("[war]");
+        System.out.println("[western]");
+        System.out.println("\nIvalid input!");
+        System.out.print("\nPlease choose any of the genres above: ");
+        genre = in.nextLine();
+      }
       addMovieList.add(genre);
 
     /*  System.out.print("\nRecommended age for movie: ");
