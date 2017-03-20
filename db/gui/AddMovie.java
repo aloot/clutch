@@ -14,6 +14,7 @@ public class AddMovie {
   private String company  = "";
   private String year     = "";
   private int yearInt     = -1;
+  private int ageInt      = -1;
   private String synopsis = "";
   private String director = "";
 
@@ -38,17 +39,31 @@ public class AddMovie {
       genre = in.nextLine();
       addMovieList.add(genre);
 
-      System.out.print("\nRecommended age for movie: ");
+    /*  System.out.print("\nRecommended age for movie: ");
       age = in.nextLine();
+      addMovieList.add(age); */
+
+      for (;;) {
+        System.out.print("\nAge rating for movie: ");
+        String line = in.nextLine();
+        try {
+          ageInt = Integer.parseInt(line.trim());
+        } catch (NumberFormatException e) {
+          System.out.println("Invalid input! Not a valid number.");
+          continue;
+        }
+        if (ageInt < 0 || ageInt > 18) {
+          System.out.println("Invalid input! Out of range.");
+          continue;
+        }
+        break;
+      }
+      String age = Integer.toString(ageInt);
       addMovieList.add(age);
 
       System.out.print("\nProduction company: ");
       company = in.nextLine();
       addMovieList.add(company);
-
-      /*System.out.print("\nYear movie was produced: ");
-      year = in.nextLine();
-      addMovieList.add(year);*/
 
       for (;;) {
         System.out.print("\nYear movie was produced: ");
