@@ -35,8 +35,8 @@ public class Review {
    this.id_review = 0;
    this.id_movie = Integer.parseInt(props.get(0));
    this.score = Integer.parseInt(props.get(1));
-   this.author = props.get(2);
-   this.review = props.get(3);
+   this.author = props.get(3);
+   this.review = props.get(2);
 //   System.out.println("da rev: " + this);
  }
 
