@@ -1,7 +1,5 @@
 package db.gui;
 
-//import db.gui.Character;
-
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -38,8 +36,7 @@ public class AddMovie {
 
       System.out.print("\nGenre of movie: ");
       genreInput = in.nextLine();
-      String genre = genreInput.toLowerCase();
-      System.out.println(genre);
+      genre = genreInput.toLowerCase();
       while (!genre.equals("action") && !genre.equals("drama") && !genre.equals("comedy") && !genre.equals("family") && !genre.equals("horror") && !genre.equals("thriller") && !genre.equals("musical") && !genre.equals("western") && !genre.equals("war") && !genre.equals("fantasy") && !genre.equals("adventure")) {
         System.out.println("\n[action]");
         System.out.println("[adventure]");
@@ -56,7 +53,6 @@ public class AddMovie {
         System.out.print("\nPlease choose any of the genres above: ");
         genreInput = in.nextLine();
         genre = genreInput.toLowerCase();
-        System.out.println(genre);
       }
       addMovieList.add(genre);
 
@@ -111,6 +107,8 @@ public class AddMovie {
       System.out.print("\nDirector of the movie: ");
       director = in.nextLine();
       addMovieList.add(director);
+
+
 
       /*while (true) {
         c.askForActor();

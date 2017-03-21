@@ -235,7 +235,7 @@ performSelection
     switch(menuChoice) {
       case 1: // list movies
       movieListByName = mdb.getAllMoviesByTitle();
-      System.out.println("\nAll movies listed so far:");
+      System.out.println("\nAll movies in database:");
       System.out.println("ID  Movie\n-----------------");
       int counter = 1;
       for (Movie m : movieListFullData) {

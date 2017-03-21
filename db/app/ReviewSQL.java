@@ -174,6 +174,9 @@ public class ReviewSQL implements FaceReviewDB{
     return null;
   }
 
+//----------------------------------------------------------------------------//
+
+//----------------------------------------------------------------------------//
   /*public int updateHTTPSbyName(String name, boolean https){
     String SQL="UPDATE municipalities SET HTTPS="+(https?"1":"0")+" WHERE name='"+name+"'";
     System.out.println("DEBUG: SQL: " + SQL);

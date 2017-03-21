@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class AddActor {
 
   public ArrayList<String> addActorList = new ArrayList<String>();
-  String actorName    ="";
-  String birth        ="";
-  String nationality  ="";
-  String biography    ="";
-  String character    ="";
+  private String actorName    ="";
+  private String birth        ="";
+  private String nationality  ="";
+  private String biography    ="";
+  private String character    ="";
 
   public ArrayList<String> addActor() {
 
@@ -34,12 +34,28 @@ public class AddActor {
 
     System.out.print("\nCharacter in this movie: ");
     character =   sc.nextLine();
-    System.out.print("\nDate of birth [XXXX-XX-XX]: ");
+    while (character.trim().isEmpty()) {
+      System.out.print("\n'Character' cannot be empty, please enter a character name: ");
+      character =   sc.nextLine();
+    }
+    addActorList.add(character);
+
+    System.out.print("\nDate of birth [YYYY-MM-DD]: ");
     birth =       sc.nextLine();
+    while (!birth.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})")) {
+      System.out.print("\nInvalid date format! Please follow the templete above: ");
+      birth =       sc.nextLine();
+    }
+
+    addActorList.add(birth);
+
     System.out.print("\nNationality: ");
     nationality = sc.nextLine();
+    addActorList.add(nationality);
+
     System.out.print("\nBiography: ");
     biography =   sc.nextLine();
+    addActorList.add(biography);
 
     return addActorList;
   }
