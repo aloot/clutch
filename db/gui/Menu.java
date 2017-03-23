@@ -15,9 +15,10 @@ import db.app.FaceReviewDB;
 //import db.gui.AddActor;
 //import db.gui.ActorSQL;
 
-//import db.app.MovieActor;
-//import db.app.MovieActorSQL;
-//import db.app.FaceMovieActorDB;
+
+import db.app.MovieActor;
+import db.app.ActorSQL;
+import db.app.FaceMovieActorDB;
 
 import java.util.Scanner;
 import java.util.ArrayList;
