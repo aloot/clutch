@@ -100,6 +100,9 @@ performSelection
       try {
         System.out.print(enterSelection);
         loginChoice = Integer.parseInt(sc.nextLine());
+        if (loginChoice > 3) {
+          System.out.println(invalidInput);
+        }
       } catch (NumberFormatException e) {
         System.out.println(invalidInput);
         }
@@ -121,31 +124,33 @@ performSelection
 //--------------------------------------//
   public int menuInput() {
     int menuChoice = -1;
-    while (menuChoice < 0 || menuChoice > 7) {
+    while (menuChoice < 0 || menuChoice > 6) {
       try {
 //        printMenu();
         System.out.print(enterSelection);
         menuChoice = Integer.parseInt(sc.nextLine());
+        if (menuChoice < 1 || menuChoice > 6) {
+          System.out.println(invalidInput);
+        }
       } catch (NumberFormatException e) {
         System.out.println(invalidInput);
-        }
+      }
     } return menuChoice;
   }
-//----------------------------------------------//
-/*
-* max är antalet alternativ som listats*/
-  private int mChoice(int max) {
+
+  private int mChoice() {
     int choice = -1;
-    while (choice < 0 || choice > max + 1 ) {
+    while (choice < 0 || choice > 3) {
       try {
         System.out.print(enterSelection);
         choice = Integer.parseInt(sc.nextLine());
+        if (choice < 1 || choice > 3) {
+          System.out.println(invalidInput);
+        }
       } catch (NumberFormatException nfe) {
         System.out.println(invalidInput);
       }
-    }
-    //System.out.println("choice: " + choice);
-    return choice;
+    } return choice;
   }
 // nr är id på filmen som ska visas
 //  private void showMovie(List<Movie> mList, int counter)
@@ -197,7 +202,7 @@ performSelection
       System.out.println("\n1. Add review");
       System.out.println("2. Add actor");
       System.out.println("3. Back");
-      int menuChoice = mChoice(3);
+      int menuChoice = mChoice();
 
       switch(menuChoice) {
         case 1: // add Review
@@ -236,7 +241,7 @@ performSelection
       case 1: // list movies
       movieListByName = mdb.getAllMoviesByTitle();
       System.out.println("\nAll movies in database:");
-      System.out.println("ID  Movie\n-----------------");
+      System.out.println("ID  Movie\n----------------------------------------");
       int counter = 1;
       for (Movie m : movieListFullData) {
         System.out.print(m.id_movie() + "   " + m.title());
@@ -302,12 +307,14 @@ performSelection
         System.exit(0);
         break;
       default:
-        System.out.println("An unknown error has occured.");
+        System.out.println(invalidInput);
     }
   }
 //--------------------------------//
   public void helpMenu() {
-    System.out.println("\nThis is Clutch-MDb, a textbased movie database...");
+    System.out.println("\n  /----------------------------------------------/");
+    System.out.println(" /This is Clutch-MDb, a textbased movie database/");
+    System.out.println("/----------------------------------------------/");
     System.out.println("\nEst feugiat habitasse arcu commodo augue interdum Facilisis pharetra tortor habitasse feugiat praesent suscipit rutrum \nSodales sociosqu facilisis tempus metus Magna congue per quis vehicula Porttitor etiam tristique massa et dapibus amet \nlorem molestie Sociosqu Curae dolor amet nulla id diam donec ut auctor, imperdiet vehicula Maecenas tellus purus nam \nporta ligula fusce donec varius, tristique.");
   }
 //--------------------------------//
