@@ -11,7 +11,6 @@ public class Actor {
   private String nationality;
   private String biography;
 
-
   /**
    * @param id_actor integer, primary key, not null
    * @param name String actor name
@@ -81,11 +80,9 @@ public class Actor {
       return this.biography;
     }
 
-
-/*   public void setID(int id){
-     this.id_review = id;
-   }*/
-
+    public void setID(int id){
+     this.id_actor = id;
+   }
 
   @Override // ta bort id_movie från utskrift
   public String toString(){
