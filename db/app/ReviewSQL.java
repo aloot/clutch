@@ -91,8 +91,8 @@ public class ReviewSQL implements FaceReviewDB{
       "'" + author + "', " +
       "'" + review + "')";
 //      System.out.println("sql-et: " + SQL);
-//    System.out.println(db.executeUpdate(SQL)+
-//                       " rows inserted");
+    System.out.println(db.executeUpdate(SQL)+
+                       " rows inserted");
 
     /* r doesn't have an ID yet. Let's find it... */
     /*

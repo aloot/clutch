@@ -16,7 +16,7 @@ import db.app.FaceReviewDB;
 //import db.gui.ActorSQL;
 
 import db.app.MovieActor;
-import db.app.MovieActorSQL;
+import db.app.ActorSQL;
 import db.app.FaceMovieActorDB;
 
 import java.util.Scanner;
