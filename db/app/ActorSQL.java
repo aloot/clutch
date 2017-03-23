@@ -1,5 +1,7 @@
 package db.app;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
@@ -9,7 +11,7 @@ import java.sql.PreparedStatement;
 public class ActorSQL implements FaceMovieActorDB{
   DBUtils db = DBUtils.getInstance();
 
-  public List<String> getAllActorsByName(){
+  public ArrayList<String> getAllActorsByName(){
     ArrayList<String> actorNamesList = new ArrayList<String>();
     ResultSet rs = db.executeQuery("SELECT name FROM actor ORDER BY name");
     try{
@@ -27,8 +29,8 @@ public class ActorSQL implements FaceMovieActorDB{
     return null;
   }
 
-  public List<Actor> getAllActorsFullData(){
-    ArrayList<Actor> ActorList = new ArrayList<Actor>();
+  public ArrayList<Actor> getAllActorsFullData(){
+    ArrayList<Actor> actorList = new ArrayList<Actor>();
     ResultSet rs = db.executeQuery("SELECT * FROM actor order by lower(name)  asc");
     try{
       Actor a = null;
@@ -39,10 +41,10 @@ public class ActorSQL implements FaceMovieActorDB{
                            rs.getString("nationality"),
                            rs.getString("biography"));
         a.setID(rs.getInt("id_actor"));
-        ActorList.add(a);
+        actorList.add(a);
       }
       db.closeIt(rs);
-      return ActorList;
+      return actorList;
     } catch (Exception e){
       System.err.println("Getting all actors: " + e.getMessage());
       db.closeIt(rs);

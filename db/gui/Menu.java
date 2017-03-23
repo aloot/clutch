@@ -11,9 +11,9 @@ import db.gui.AddReview;
 import db.app.ReviewSQL;
 import db.app.FaceReviewDB;
 
-//import db.app.Actor;
-//import db.gui.AddActor;
-//import db.gui.ActorSQL;
+import db.app.Actor;
+import db.gui.AddActor;
+import db.app.ActorSQL;
 
 
 import db.app.MovieActor;
@@ -34,7 +34,7 @@ public class Menu {
 
   FaceMovieDB mdb = new MovieSQL();
   FaceReviewDB rdb = new ReviewSQL();
-  // FaceMovieActorDB adb = new MovieActorSQL();
+  FaceMovieActorDB adb = new ActorSQL();
 
   //AddActor addAct = new AddActor();
 
@@ -162,7 +162,7 @@ performSelection
 
     AddActor addAct = new AddActor();
     ArrayList<String> newAct;
-    //List<MovieActor> actList;
+    List<MovieActor> actList;
 
     int movieNr = -1;
     boolean b = true;
@@ -180,16 +180,23 @@ performSelection
             for (Review r : revList) {
               System.out.println(r.score() + "          " + "/" + r.author() + "     " + r.review());
             }
-  /*          int counter = 1;
-            actList = adb.getByMovieID(movieNr);
-            System.out.println("\nActors:");
+
+
+
+  //          int counter = 1;
+            actList = adb.getMovieActorByIdMovie(Integer.toString(movieNr));
             for (MovieActor ma : actList) {
+              System.out.println("\nactList:" + ma.name() + ", spelar: " + ma.character());
+  /*
               if (movieNr == ma.id_movie) {
                 System.out.println(counter +  ". " + a.character() + " - " + a.name());
                 counter ++;
-              }
+              }*/
             }
-            System.out.println();*/
+
+
+
+            System.out.println();
             b = false;
           }
         }
@@ -225,6 +232,10 @@ performSelection
           break;
         }
       }
+    }
+
+    private void showActorList(List<Actor> aList) {
+
     }
 //----------------------------------------------//
   public void performSelection(int menuChoice) {
@@ -265,11 +276,21 @@ performSelection
         break;
 
       case 3: // List actors
+        ArrayList<Actor> actorListFullData;
+        actorListFullData = adb.getAllActorsFullData();
+        System.out.println("\nAll actors so far:");
+        System.out.println("ID  Actor\n----------------------------------------");
+        counter = 1;
+        for (Actor a : actorListFullData) {
+          System.out.println(a.id_actor() + "   " + a.name());
+          counter ++;
+        }
+        System.out.println("------------End of List-----------------");
+        showActorList(actorListFullData);
+
 /*        maList = addReview();
-
 //        List<Movie>  movieList = mdb.getAllMovies();
-
-/*        addReviewList = addReview.addReview();
+       addReviewList = addReview.addReview();
         Review r = new Review(addReviewList)
         System.out.println("\n" + r);
         mdb.addReview(r); */

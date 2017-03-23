@@ -1,6 +1,7 @@
 package db.app;
 //import db.app.Actor;
 import java.util.List;
+import java.util.ArrayList;
 
 public interface FaceMovieActorDB{
 
@@ -9,7 +10,7 @@ public interface FaceMovieActorDB{
   public List<String> getAllActorsByName();
 
   // getAllActorsFullData
-  public List<Actor> getAllActorsFullData();
+  public ArrayList<Actor> getAllActorsFullData();
 
   // updateActorName
 
