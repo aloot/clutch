@@ -46,11 +46,11 @@ public class AddReview {
       try {
         score = Integer.parseInt(line.trim());
       } catch (NumberFormatException e) {
-        System.out.println("Invalid input! Not a valid number.");
+        System.out.println("\nInvalid input! Not a valid number.");
         continue;
       }
       if (score < 0 || score > 10) {
-        System.out.println("Invalid input! Out of range.");
+        System.out.println("\nInvalid input! Out of range.");
         continue;
       }
       break;

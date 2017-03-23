@@ -20,12 +20,11 @@ public class AddActor {
     actorName = sc.nextLine();
     do {
       while (actorName.matches(".*\\d.*")){
-        System.out.println("\n'Actor Name' cannot contain digits!");
-        System.out.print("\nPlease enter a valid 'Actor name': ");
+        System.out.println("\n'Name' cannot contain digits, please enter a valid name!");
         actorName = sc.nextLine();
       }
       if (actorName.trim().isEmpty()) {
-        System.out.print("\nName can not be empty, please enter a name: ");
+        System.out.print("\n'Name' can not be empty, please enter a name: ");
         actorName = sc.nextLine();
       }
     } while (actorName.trim().isEmpty());
@@ -43,7 +42,7 @@ public class AddActor {
     System.out.print("\nDate of birth [YYYY-MM-DD]: ");
     birth =       sc.nextLine();
     while (!birth.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})")) {
-      System.out.print("\nInvalid date format! Please follow the templete above: ");
+      System.out.print("\nInvalid date format! Please follow this templete, [YYYY-MM-DD]: ");
       birth =       sc.nextLine();
     }
 
