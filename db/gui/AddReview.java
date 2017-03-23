@@ -22,10 +22,16 @@ public class AddReview {
     revList.add(author);
     revList.add(review);
 
+
+
     //System.out.println("revList: " + revList);
 
     System.out.print("\nYour name: ");
     author = sc.nextLine();
+    while (author.equals("")) {
+      System.out.print("\nYou must enter a name (it doesn´t have to be your real name): ");
+      author = sc.nextLine();
+    }
     revList.set(3, author);
     //System.out.println("revList: " + revList);
 
@@ -34,19 +40,21 @@ public class AddReview {
     revList.set(2, review);
     //System.out.println("revList: " + revList);
 
-    System.out.print("\nYour score [0-10]: ");
-    do {
-      while (!sc.hasNextInt()) {
-        sc.next();
-        System.out.print("\nInvalid input!");
-        System.out.print("\nPlease enter a number from 0-10: ");
+    for (;;) {
+      System.out.print("\nYour score [0-10]: ");
+      String line = sc.nextLine();
+      try {
+        score = Integer.parseInt(line.trim());
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input! Not a valid number.");
+        continue;
       }
-      score = sc.nextInt();
-      if (!(score >= 0 && score <= 10)) {
-        System.out.print("\nInvalid input!");
-        System.out.print("\nPlease enter a number from 0-10: ");
+      if (score < 0 || score > 10) {
+        System.out.println("Invalid input! Out of range.");
+        continue;
       }
-    } while (!(score >= 0 && score <= 10 ));
+      break;
+    }
 
 //    String strScore = toString(score);
     String strScore = Integer.toString(score);

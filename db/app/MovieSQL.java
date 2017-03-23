@@ -93,9 +93,11 @@ public class MovieSQL implements FaceMovieDB{
       "'" + prod_year + "', " +
       "'" + synopsis + "', " +
       "'" + director + "')";
+      
+      db.executeUpdate(SQL);
 //      System.out.println("sql-et: " + SQL);
-    System.out.println(db.executeUpdate(SQL)+
-                       " rows inserted");
+    //System.out.println(db.executeUpdate(SQL) + " rows inserted");
+
 
     /* m doesn't have an ID yet. Let's find it... */
     /*
