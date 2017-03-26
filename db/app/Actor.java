@@ -37,7 +37,6 @@ public class Actor {
    this.birth = props.get(1);
    this.nationality = props.get(2);
    this.biography = props.get(3);
-   System.out.println("da act: " + this);
  }
 
   /**

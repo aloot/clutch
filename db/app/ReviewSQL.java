@@ -3,9 +3,7 @@ import java.util.*;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
-/**
- * An implementation of MunicipalityDB that uses the DBUtils to connect to an SQLite database.
- */
+
 public class ReviewSQL implements FaceReviewDB{
   DBUtils db = DBUtils.getInstance();
 
@@ -57,22 +55,12 @@ public class ReviewSQL implements FaceReviewDB{
     return null;
   }
 
-/*  public void updateMovieTitle(Movie m){
-    int id = m.id_movie();
-    String mTitle = m.title();
-    String SQL="UPDATE movie SET title= " +
-      m.title() + "WHERE id_movie =" + id;
-    System.out.println(db.executeUpdate(SQL)
-                       + " rows updated");
-  }
-*/
   public void deleteReview(Review r){
     int id_review = r.id_review();
     String SQL="DELETE FROM review"+
       " WHERE id_review=" + id_review;
     System.out.println(db.executeUpdate(SQL) +
                        " rows deleted");
-    // What if m.id() returns 0? Think about a solution!
   }
   /**
    * Inserts m into the database and sets the id of m to the
@@ -91,23 +79,16 @@ public class ReviewSQL implements FaceReviewDB{
       "'" + author + "', " +
       "'" + review + "')";
 
-      db.executeUpdate(SQL);
 //      System.out.println("sql-et: " + SQL);
     System.out.println(db.executeUpdate(SQL)+
                        " rows inserted");
 
     /* r doesn't have an ID yet. Let's find it... */
-    /*
-      Alternative method to get the last rowid:
-      implement select last_insert_rowid(); in the executeUpdate()
-      method. That requires a total re-design of the method and
-      the semantics. Better to add a executeInsert method that
-      returns the last_insert_rowid() if successful or 0 otherwise.
-    */
+
 // osäker på vad denna gör uppdaterat från title till review/id_review/AK
     ResultSet rs = db.executeQuery("SELECT id_review"+
                                    " FROM review"+
-                                   " WHERE review ='"+review+"'");
+                                   " WHERE review ='" + review + "'");
     try{
       rs.next();
       r.setID(rs.getInt("id_review"));
@@ -163,8 +144,6 @@ public class ReviewSQL implements FaceReviewDB{
                      rs.getString("review"));
         r.setID(rs.getInt("id_review"));
       }
-
-      System.out.println("En ny review: " + r.review());
       return r;
     } catch (Exception e){
       System.err.println("getByID: " + e.getMessage());
@@ -177,28 +156,5 @@ public class ReviewSQL implements FaceReviewDB{
 //----------------------------------------------------------------------------//
 
 //----------------------------------------------------------------------------//
-  /*public int updateHTTPSbyName(String name, boolean https){
-    String SQL="UPDATE municipalities SET HTTPS="+(https?"1":"0")+" WHERE name='"+name+"'";
-    System.out.println("DEBUG: SQL: " + SQL);
-    int rows = db.executeUpdate(SQL);
-    return rows;
-  }*/
 
-  /*
-  // What's this? See if you can find information about it!
-  public int updateHTTPSbyName2(String name, boolean https){
-  String sql = "UPDATE municipalities SET HTTPS=? WHERE name= ?";
-  int result=0;
-  try{
-  PreparedStatement pStm = db.preparedStatement(sql);
-  pStm.setInt(1, (https?1:0));
-  pStm.setString(2,name);
-  result=pStm.executeUpdate();
-  return result;
-  }catch(Exception e){
-  System.err.println("Error creating prepared stm: "+e.getMessage());
-  return -1;
-  }
-  }
-  */
 }

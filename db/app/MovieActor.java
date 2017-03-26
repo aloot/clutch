@@ -8,6 +8,35 @@ public class MovieActor {
   private int id_movie;
   private int id_actor;
   private String character;
+
+  public MovieActor(String character){
+    this.character = character;
+  }
+
+  public MovieActor(ArrayList<String> props) {
+    this.id_movie = Integer.parseInt(props.get(0));
+    this.id_actor = Integer.parseInt(props.get(1));
+    this.character = props.get(2);
+  }
+
+  public int id_movie() {
+    return this.id_movie;
+  }
+  public int id_actor() {
+    return this.id_actor;
+  }
+  public String character() {
+    return this.character;
+  }
+
+  @Override // ta bort id_movie från utskrift
+  public String toString(){
+    return  id_movie + " | " + id_actor + " | " + character ;
+  }
+
+}
+
+/*
   private String title;
   private String genre;
   private String age;
@@ -19,7 +48,7 @@ public class MovieActor {
   private String birth;
   private String nationality;
   private String biography;
-
+*/
 
   /**
    * @param id_actor integer, primary key, not null
@@ -29,6 +58,7 @@ public class MovieActor {
    * @param biography Actor cv
    */
 
+/*
    public MovieActor(
    int id_movie,
    int id_actor,
@@ -76,24 +106,14 @@ public class MovieActor {
     this.nationality = props.get(12);
     this.biography = props.get(13);
    System.out.println("movie_actor: " + this);
- }
+ } */
 
   /**
    * Returns the id number (primary key) of this movie. The number is auto generated from the sql statement creating the rows
    * @return the id of this movie as an int (or 0 if it's not been set)
    */
-   public int id_movie() {
-     return this.id_movie;
-   }
 
-  public int id_actor() {
-    return this.id_actor;
-  }
-
-  public String character(){
-    return this.character;
-  }
-  public String title(){
+/*  public String title(){
     return this.title;
   }
   public String genre(){
@@ -144,3 +164,4 @@ public class MovieActor {
   }
 
 }
+*/

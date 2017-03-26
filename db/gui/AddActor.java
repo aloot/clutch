@@ -5,17 +5,20 @@ import java.util.ArrayList;
 
 public class AddActor {
 
-  public ArrayList<String> addActorList = new ArrayList<String>();
-  private String actorName    ="";
-  private String birth        ="";
-  private String nationality  ="";
-  private String biography    ="";
-  private String character    ="";
+  public ArrayList<String> addActorList = new ArrayList<String>(5);
+  private String actorName    = "";
+  private String birth        = "";
+  private String nationality  = "";
+  private String biography    = "";
+  private String character    = "";
 
   public ArrayList<String> addActor() {
-
+    addActorList.add(actorName);
+    addActorList.add(birth);
+    addActorList.add(nationality);
+    addActorList.add(biography);
+    addActorList.add(character);
     Scanner sc = new Scanner(System.in);
-
     System.out.print("\nActor name: ");
     actorName = sc.nextLine();
     do {
@@ -29,7 +32,7 @@ public class AddActor {
       }
     } while (actorName.trim().isEmpty());
     String newActorName = actorName.trim();
-    addActorList.add(newActorName);
+    addActorList.set(0, newActorName);
 
     System.out.print("\nCharacter in this movie: ");
     character =   sc.nextLine();
@@ -37,7 +40,7 @@ public class AddActor {
       System.out.print("\n'Character' cannot be empty, please enter a character name: ");
       character =   sc.nextLine();
     }
-    addActorList.add(character);
+    addActorList.set(4, character);
 
     System.out.print("\nDate of birth [YYYY-MM-DD]: ");
     birth =       sc.nextLine();
@@ -46,16 +49,15 @@ public class AddActor {
       birth =       sc.nextLine();
     }
 
-    addActorList.add(birth);
+    addActorList.set(1, birth);
 
-    System.out.print("\nNationality: ");
+    System.out.print("\nFrom/ Born in: ");
     nationality = sc.nextLine();
-    addActorList.add(nationality);
+    addActorList.set(2, nationality);
 
     System.out.print("\nBiography: ");
     biography =   sc.nextLine();
-    addActorList.add(biography);
-
+    addActorList.set(3, biography);
     return addActorList;
   }
 }

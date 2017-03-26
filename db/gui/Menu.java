@@ -1,5 +1,4 @@
 package db.gui;
-import db.utils.Utils;
 
 import db.app.Movie;
 import db.gui.AddMovie;
@@ -14,15 +13,16 @@ import db.app.FaceReviewDB;
 import db.app.Actor;
 import db.gui.AddActor;
 import db.app.ActorSQL;
-
+import db.app.FaceActorDB;
 
 import db.app.MovieActor;
-import db.app.ActorSQL;
-import db.app.FaceMovieActorDB;
+//import db.app.FaceMovieActorDB;
 
+import db.utils.Utils;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormat;
 
 public class Menu {
 
@@ -34,7 +34,7 @@ public class Menu {
 
   FaceMovieDB mdb = new MovieSQL();
   FaceReviewDB rdb = new ReviewSQL();
-  FaceMovieActorDB adb = new ActorSQL();
+  FaceActorDB adb = new ActorSQL();
 
   //AddActor addAct = new AddActor();
 
@@ -116,7 +116,7 @@ performSelection
 //-------------------------------------//
   public void printMenu() {
     System.out.println("\n1. List movies");
-    System.out.println("\n2. Add movies");
+    System.out.println("\n2. Add movie");
     System.out.println("\n3. List Actors");
     System.out.println("\n4. Help/about Clutch-MDb");
     System.out.println("\n5. Back to login");
@@ -127,7 +127,6 @@ performSelection
     int menuChoice = -1;
     while (menuChoice < 0 || menuChoice > 6) {
       try {
-//        printMenu();
         System.out.print(enterSelection);
         menuChoice = Integer.parseInt(sc.nextLine());
         if (menuChoice < 1 || menuChoice > 6) {
@@ -153,100 +152,245 @@ performSelection
       }
     } return choice;
   }
-// nr är id på filmen som ska visas
-//  private void showMovie(List<Movie> mList, int counter)
-  private void showMovie(List<Movie> mList) {
+
+  private int kbdChoice(int max) {
+    int choice = -1;
+    while (choice < 0 || choice > max ) {
+      try {
+        System.out.print(enterSelection);
+        choice = Integer.parseInt(sc.nextLine());
+      } catch (NumberFormatException nfe) {
+        System.out.println(invalidInput);
+      }
+    }
+    return choice;
+  }
+
+  private void extendMovieData(List<Movie> mList, int movieNr) {
     AddReview addReview = new AddReview();
     ArrayList<String> newReview;
-    List<Review> revList;
-
     AddActor addAct = new AddActor();
     ArrayList<String> newAct;
-    List<MovieActor> actList;
+    ArrayList<String> newMA = new ArrayList<String>();
 
-    int movieNr = -1;
     boolean b = true;
-
     while (b) {
-      try {
-        System.out.print("\nEnter a movie number: ");
-        movieNr = Integer.parseInt(sc.nextLine());
+      System.out.println("\n1. Add review");
+      System.out.println("2. Add actor");
+      System.out.println("3. List all actors");
+      System.out.println("4. Back");
+      int menuChoice = kbdChoice(3);
+      switch(menuChoice) {
+        case 1: // add Review
+          newReview = addReview.addReview(movieNr);
+          Review r = new Review(newReview);
+          rdb.addReview(r);
+          showMovie(mList, movieNr);
+          break;
+        case 2: // add actor
+          newAct = addAct.addActor();
+          newMA.add(Integer.toString(movieNr));
+          newMA.add("0");
+          newMA.add(newAct.get(newAct.size() - 1));
+          newAct.remove(newAct.size() - 1);
+          Actor a = new Actor(newAct);
+          adb.addActor(a);
+          newMA.set(1, Integer.toString(a.id_actor()));
+//          System.out.println(newMA);
+          MovieActor ma = new MovieActor(newMA);
+          adb.addMovieActor(ma);
+          showMovie(mList, movieNr);
+        case 3:
+          b = false;
+          break;
+        }
+      }
+    }
 
-        for (Movie m : mList) {
-          if (movieNr == m.id_movie()) {
-            System.out.println(m);
+  private void showMovie(List<Movie> mList, int movieNr) {
+    DecimalFormat df1 = new DecimalFormat("#,###,##0.0");
+//        System.out.println(df.format(364565.14));
+    List<Review> revList;
+    ArrayList<Object> oList;
+    ArrayList<MovieActor> maList = new ArrayList<MovieActor>();
+    ArrayList<Actor> actList = new ArrayList<Actor>();
+    for (Movie m : mList) { // hitta rätt film, visa den + dess reviews
+      if (movieNr == m.id_movie()) {
+        System.out.println(m);
+        revList = rdb.getByMovieID(movieNr);
+        Integer listSize = revList.size();
+        if (listSize > 0) {
+          double mScore = 0.00;
+          System.out.println("\nScore:     Author:     Review:");
+          for (Review r : revList) {
+            System.out.println(r.score() + "          " + "/" + r.author() + "     " + r.review());
+            mScore += r.score();
+          }
+          System.out.println("Average rating: " + df1.format(mScore/listSize));
+        } else {
+          System.out.println("\nBe the first to rate this movie..! :P");
+        }
+        // Skriv ut skådisarna
+        oList = adb.getActorByIdMovie(movieNr);
+        if (oList.size() > 1) {
+          for (int i = 0; i < oList.size(); i = i+2) {
+            maList.add((MovieActor) oList.get(i));
+            actList.add((Actor) oList.get(i+1));
+          }
+          System.out.println("\nCast:");
+          int counter = 1;
+          for (int i = 0; i < maList.size(); i ++) {
+            System.out.println(counter + ". " + maList.get(i).character() + "  - - - - -  " + actList.get(i).name());
+            counter ++;
+          }
+        } else {
+          System.out.println("\nNo actors listed, so far");
+        }
+
+      }
+    } // end 'for (Movie m : mList)'
+  }
+
+  private void getMovieNr(List<Movie> mList, int movieNr) {
+//    AddReview addReview = new AddReview();
+//    ArrayList<String> newReview;
+//    List<Review> revList;
+
+//    AddActor addAct = new AddActor();
+//    ArrayList<String> newAct;
+//    ArrayList<String> newMA = new ArrayList<String>();
+//    ArrayList<Object> oList;
+//    ArrayList<MovieActor> maList = new ArrayList<MovieActor>();
+//    ArrayList<Actor> actList = new ArrayList<Actor>();
+//    ArrayList<Actor> actListA = new ArrayList<String>();
+    if (movieNr < 1) {
+      boolean b = true;
+      while (b) { // bara gör detta tills det är dags att backa i menyn...
+        try {
+          System.out.print("\nEnter a movie number: ");
+          movieNr = Integer.parseInt(sc.nextLine());
+          for (Movie m : mList) {
+          // hitta rätt film, visa den + dess reviews
+            if (movieNr == m.id_movie()) {
+              showMovie(mList, movieNr);
+              extendMovieData(mList, movieNr);
+              b = false;
+            }
+          }
+/*            System.out.println(m);
             revList = rdb.getByMovieID(movieNr);
             System.out.println("\nScore:     Author:     Review:");
             for (Review r : revList) {
               System.out.println(r.score() + "          " + "/" + r.author() + "     " + r.review());
             }
-
-
-
-  //          int counter = 1;
-            actList = adb.getMovieActorByIdMovie(Integer.toString(movieNr));
-            for (MovieActor ma : actList) {
-              System.out.println("\nactList:" + ma.name() + ", spelar: " + ma.character());
-  /*
-              if (movieNr == ma.id_movie) {
-                System.out.println(counter +  ". " + a.character() + " - " + a.name());
-                counter ++;
-              }*/
+            // Skriv ut skådisarna
+            oList = adb.getActorByIdMovie(movieNr);
+            if (oList.size() > 1) {
+              for (int i = 0; i < oList.size(); i = i+2) {
+                maList.add((MovieActor)oList.get(i));
+                actList.add((Actor)oList.get(i+1));
+              }
             }
-
-
-
-            System.out.println();
+            System.out.println("\nCast:");
+            int counter = 1;
+            for (int i = 0; i < maList.size(); i ++) {
+              System.out.println(counter + ". " + maList.get(i).character() + "  - - - - -  " + actList.get(i).name());
+              counter ++;
+            }
             b = false;
           }
+        } // end 'for (Movie m : mList)' */
+        } catch (NumberFormatException e) {
+          System.out.println("\nInvalid input! Try again...");
         }
-      } catch (NumberFormatException e) {
-        System.out.println("\nInvalid input! Try again...");
       }
     }
-    // add review or actor. stay in this loop until 3 is entered
-    b = true;
-    while (b) {
+    /*
       System.out.println("\n1. Add review");
       System.out.println("2. Add actor");
       System.out.println("3. Back");
-      int menuChoice = mChoice();
-
+      int menuChoice = kbdChoice(3);
       switch(menuChoice) {
         case 1: // add Review
           newReview = addReview.addReview(movieNr);
           Review r = new Review(newReview);
-  //      System.out.println("\nr: " + r);
           rdb.addReview(r);
           break;
         case 2: // add actor
           newAct = addAct.addActor();
+          newMA.add(Integer.toString(movieNr));
+          newMA.add("0");
+          newMA.add(newAct.get(newAct.size() - 1));
+          newAct.remove(newAct.size() - 1);
+          Actor a = new Actor(newAct);
+          adb.addActor(a);
+          newMA.set(1, Integer.toString(a.id_actor()));
+          System.out.println(newMA);
+          MovieActor ma = new MovieActor(newMA);
+          adb.addMovieActor(ma);
+          break;
 
-          // Actor a = new Actor(newAct); Actor får ett internt nr
-          // adb.addActor(a, movieNr) koppla actor med movie
-          //  showActor(movieNr);
-          break;
         case 3:
-          b = false;
-//          printMenu();
-          break;
+          b = false;*/
+//    printMenu();
+  }
+
+  private void showActor(List<Actor> aList, int actNr) {
+    ArrayList<Object> oList;
+    ArrayList<Actor> actList = new ArrayList<Actor>();
+    ArrayList<MovieActor> maList = new ArrayList<MovieActor>();
+    ArrayList<Movie> mList = new ArrayList<Movie>();
+    for (Actor a : aList) {
+      if (actNr == a.id_actor()) {
+        oList = adb.getActorFromId(actNr);
+//        System.out.println("oList: " + oList);
+        if (oList.size() > 2) { // get it sorted
+          for (int i = 0; i < oList.size(); i = i + 3) {
+            actList.add((Actor) oList.get(i));
+            maList.add((MovieActor) oList.get(i + 1));
+            mList.add((Movie) oList.get(i + 2));
+          }
+        } // done sorting
+        int listSize = maList.size();
+        System.out.println(actList.get(0).name() + " is an actor, born " + actList.get(0).birth() + " in " + actList.get(0).nationality());
+        System.out.println("S/he has an acting part in: ");
+        for (int i = 0; i < maList.size(); i++) {
+          System.out.println("\t'" + mList.get(i).title() + "' by " +mList.get(i).director() + ", as " + maList.get(i).character() + (maList.size() - 1 > i ?  "," : ""));
         }
+/*        System.out.println("actList: " + actList);
+        System.out.println("maList: " + maList);
+/*        System.out.println("mList: " + mList);*/
       }
     }
+  }
 
-    private void showActorList(List<Actor> aList) {
-
+  private void showActorList(List<Actor> aList) {
+    boolean b = true;
+    int actNr;
+    while (b) {
+      try {
+        System.out.println("\nEnter an actor number: ");
+        actNr = Integer.parseInt(sc.nextLine());
+        for (Actor a : aList) {
+          if (actNr == a.id_actor()){
+            showActor(aList, actNr);
+            b = false;
+          }
+        }
+      } catch (NumberFormatException e) {
+        System.out.println(invalidInput);
+      }
     }
+  }
 //----------------------------------------------//
   public void performSelection(int menuChoice) {
     AddMovie addMovie = new AddMovie();
-    List<Movie> movieListFullData = mdb.getAllMoviesFullData();
+    List<Movie> mList = mdb.getAllMoviesFullData();
+
     List<String> movieListByName = new ArrayList<String>();
     List<String> movieListByMovieID = new ArrayList<String>();
 
-    AddReview addRev = new AddReview();
-    List<Review> reviewListFullData = rdb.getAllReviewsFullData();
-
+    ArrayList<Actor> actorListFullData;
     // get an actor list
     // adb = adb.getAllActorsByName();
     switch(menuChoice) {
@@ -254,16 +398,13 @@ performSelection
       movieListByName = mdb.getAllMoviesByTitle();
       System.out.println("\nAll movies in database:");
       System.out.println("ID  Movie\n----------------------------------------");
-      int counter = 1;
-      for (Movie m : movieListFullData) {
-        System.out.print(m.id_movie() + "   " + m.title());
-  //      System.out.println("\nID  Movie");
-        counter = counter + 1;
+      for (Movie m : mList) {
+        System.out.print(m.id_movie() < 10 ? " " + m.id_movie() + "   " + m.title(): m.id_movie() + "   " + m.title());
         System.out.println("");
       }
       System.out.println("------------End of List-----------------");
-//      showMovie(movieListFullData, counter);
-      showMovie(movieListFullData);
+//      showMovie(mList, counter);
+      getMovieNr(mList, -1);
       printMenu();
       break;
 
@@ -275,15 +416,15 @@ performSelection
         runMenu();
         break;
 
-      case 3: // List actors
-        ArrayList<Actor> actorListFullData;
+      case 3: // List all actors
         actorListFullData = adb.getAllActorsFullData();
         System.out.println("\nAll actors so far:");
         System.out.println("ID  Actor\n----------------------------------------");
-        counter = 1;
+//        counter = 1;
+
         for (Actor a : actorListFullData) {
-          System.out.println(a.id_actor() + "   " + a.name());
-          counter ++;
+          System.out.println(a.id_actor() < 10 ? " " + a.id_actor() + "   " + a.name() : a.id_actor() + "   " + a.name());
+//          counter ++;
         }
         System.out.println("------------End of List-----------------");
         showActorList(actorListFullData);
