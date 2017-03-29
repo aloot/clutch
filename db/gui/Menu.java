@@ -221,7 +221,6 @@ performSelection
 
   private void showMovie(List<Movie> mList, int movieNr) {
     DecimalFormat df1 = new DecimalFormat("#,###,##0.0");
-//        System.out.println(df.format(364565.14));
     List<Review> revList;
     ArrayList<Object> oList;
     ArrayList<MovieActor> maList = new ArrayList<MovieActor>();
@@ -283,7 +282,7 @@ performSelection
           System.out.println("\nInvalid input! Try again...");
         }
       }
-    }
+    }bj
   }
 
   private void showActor(List<Actor> aList, int actNr) {
