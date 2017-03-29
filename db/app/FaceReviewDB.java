@@ -29,7 +29,7 @@ public interface FaceReviewDB{
    * Deletes a Municipality according using its ID as condition for the query to the database.
    * @param m The Municipality to be updated
    */
-  public void deleteReview(Review r);
+  public void deleteReview(int id_review);
 
   /**
    * Adds a Municipality to the database and sets its ID to the newly created records ID

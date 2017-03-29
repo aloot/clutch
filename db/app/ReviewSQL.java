@@ -55,8 +55,8 @@ public class ReviewSQL implements FaceReviewDB{
     return null;
   }
 
-  public void deleteReview(Review r){
-    int id_review = r.id_review();
+  public void deleteReview(int id_review){
+//    int id_review = r.id_review();
     String SQL="DELETE FROM review"+
       " WHERE id_review=" + id_review;
     System.out.println(db.executeUpdate(SQL) +
